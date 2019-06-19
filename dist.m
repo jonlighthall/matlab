@@ -67,7 +67,8 @@ if (nargin >= 3)
     else
         geodes=1;
         Ngeodes=arg1;
-        if (Ngeodes <2), error('Must have at least 2 points in a goedesic!');
+        if (Ngeodes <2)
+            error('Must have at least 2 points in a goedesic!');
         end
         if (nargin==4)
             spheroid=arg2;
@@ -94,7 +95,7 @@ elseif strcmp(spheroid(1:3),'wgs')
 else
     error('dist: Unknown spheroid specified!');
 end
-E = sqrt(A*A-B*B)/A;    
+E = sqrt(A*A-B*B)/A;
 EPS= E*E/(1-E*E);
 
 NN=max(size(lat));
@@ -124,8 +125,9 @@ XLAM2=long(2:NN);
 
 % wiggle lines of constant lat to prevent numerical probs.
 if (any(PHI1==PHI2))
-    for ii=1:NN-1
-        if (PHI1(ii)==PHI2(ii)), PHI2(ii)=PHI2(ii)+ 1e-14;
+    for ii = 1:NN-1
+        if (PHI1(ii) == PHI2(ii))
+            PHI2(ii) = PHI2(ii) + 1e-14;
         end
     end
 end
@@ -133,18 +135,19 @@ end
 % wiggle lines of constant long to prevent numerical probs.
 if (any(XLAM1==XLAM2))
     for ii=1:NN-1
-        if (XLAM1(ii)==XLAM2(ii)), XLAM2(ii)=XLAM2(ii)+ 1e-14;
+        if (XLAM1(ii)==XLAM2(ii))
+            XLAM2(ii)=XLAM2(ii)+ 1e-14;
         end
     end
 end
 
-% COMPUTE THE RADIUS OF CURVATURE IN THE PRIME VERTICAL FOR EACH POINT 
+% COMPUTE THE RADIUS OF CURVATURE IN THE PRIME VERTICAL FOR EACH POINT
 xnu=A./sqrt(1.0-(E*sin(lat)).^2);
 xnu1=xnu(1:NN-1);
 xnu2=xnu(2:NN);
 
 % COMPUTE THE AZIMUTHS.  A12 (A21) IS THE AZIMUTH AT POINT 1 (2) OF THE
-% NORMAL SECTION CONTAINING THE POINT 2 (1) 
+% NORMAL SECTION CONTAINING THE POINT 2 (1)
 TPSI2=(1.-E*E)*tan(PHI2) + E*E*xnu1.*sin(PHI1)./(xnu2.*cos(PHI2));
 PSI2=atan(TPSI2);
 
@@ -170,7 +173,7 @@ SSIG=sin(DLAM).*cos(PSI2)./sin(A12);
 % At this point we are OK if the angle < 90...but otherwise we get the
 % wrong branch of asin! This fudge will correct every case on a sphere, and
 % *almost* every case on an ellipsoid (wrong hnadling will be when angle is
-% almost exactly 90 degrees) 
+% almost exactly 90 degrees)
 dd2=[cos(long).*cos(lat) sin(long).*cos(lat) sin(lat)];
 dd2=sum((diff(dd2).*diff(dd2))')';
 if ( any(abs(dd2-2) < 2*((B-A)/A))^2 )
@@ -200,10 +203,10 @@ if (geodes)
     % could do it from start to halfway, then from end for the rest,
     % switching from A12 to A21... started to use Rudoe's formula, page 117
     % in Bomford...(1980, fourth edition) but then went to Clarke's best
-    % formula (pg 118) 
+    % formula (pg 118)
     
     % RP I am doing this twice because this formula doesn't work when we go
-    % past 90 degrees! 
+    % past 90 degrees!
     Ngd1=round(Ngeodes/2);
     
     % First time...away from point 1
@@ -225,7 +228,7 @@ if (geodes)
         DSINPSI =(sin(PHI1)*wns).*cos(THETA) + ...
             ((cos(PHI1).*cos(A12))*wns).*sin(THETA);
         % try to identify the branch...got to other branch if range> 1/4
-	% circle 
+        % circle
         PSI = asin(DSINPSI);
         
         DCOSPSI = cos(PSI);
@@ -244,7 +247,7 @@ if (geodes)
     end
     
     % Now we do the same thing, but in the reverse direction from the
-    % receiver! 
+    % receiver!
     if (Ngeodes-Ngd1>1)
         wns=ones(1,Ngeodes-Ngd1);
         CP2CA21 = (cos(PHI2).*cos(A21)).^2;
@@ -263,7 +266,7 @@ if (geodes)
         DSINPSI =(sin(PHI2)*wns).*cos(THETA) + ...
             ((cos(PHI2).*cos(A21))*wns).*sin(THETA);
         % try to identify the branch...got to other branch if range> 1/4
-	% circle 
+        % circle
         PSI = asin(DSINPSI);
         
         DCOSPSI = cos(PSI);
