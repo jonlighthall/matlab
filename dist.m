@@ -30,13 +30,13 @@ function [range,A12,A21]=dist(lat,long,arg1,arg2)
 %
 %  RP (WHOI) 3/Dec/91
 %    Mostly copied from BDC "dist.f" routine (copied from ....?), but then
-%   wildly modified to bring it in line with Matlab vectorization. 
+%    wildly modified to bring it in line with Matlab vectorization. 
 %  RP (WHOI) 6/Dec/91
 %    Feeping Creaturism! - added geodesic computations. This turned out to
 %    be pretty hairy since there were a lot of branch problems with asin,
 %    atan when computing geodesics subtending > 90 degrees that were
 %    ignored in the original code! 
-%  RP (WHOI) 15/Jan/91
+%  R. Pawlowicz (WHOI) 15/Jan/91
 %    Fixed some bothersome special cases, like when computing geodesics and
 %    N=2, or LAT=0... 
 %
