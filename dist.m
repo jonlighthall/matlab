@@ -103,20 +103,12 @@ if (NN ~= max(size(long)))
     error('dist: Lat, Long vectors of different sizes!');
 end
 
-% It is easier if things are column vectors, but we have to fix things
-% before returning! 
-if (NN==size(lat))
-    rowvec=0;
-else
-    rowvec=1;
-end
-
 % convert to radians
 lat=lat(:)*pi/180;
 long=long(:)*pi/180;
 
 % Fixes some nasty 0/0 cases in the geodesics stuff
-lat(lat==0)=eps*ones(sum(lat==0),1);
+lat(lat==0)=eps;
 
 PHI1=lat(1:NN-1);    % endpoints of each segment
 XLAM1=long(1:NN-1);
@@ -293,7 +285,10 @@ else
     % CONVERT TO DECIMAL DEGREES
     A12=A12*180/pi;
     A21=A21*180/pi;
-    if (rowvec)
+   
+    % It is easier if things are column vectors, but we have to fix things
+    % before returning!
+    if isrow(lat)
         range=range';
         A12=A12';
         A21=A21';
