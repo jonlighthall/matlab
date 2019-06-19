@@ -62,7 +62,7 @@ spheroid='wgs84';
 geodes=0;
 
 if (nargin >= 3)
-    if (ischar(arg1) | isstring(arg1))
+    if (ischar(arg1) || isstring(arg1))
         spheroid=char(arg1);
     else
         geodes=1;
