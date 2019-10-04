@@ -64,6 +64,6 @@ end
 end
 
 function figSorted = sortFigureHandles(figs)
-    [tmp, idx] = sort([figs.Number]);
+    [~, idx] = sort([figs.Number]);
     figSorted = figs(idx);
 end
