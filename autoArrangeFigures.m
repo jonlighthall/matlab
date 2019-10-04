@@ -21,8 +21,8 @@ end
 task_bar_offset = [0 20];
 
 %%
-figHandle = findobj('Type','figure');
-n_fig = length(figHandle);
+figHandle = sortFigureHandles(findobj('Type','figure'));
+n_fig = size(figHandle,1);
 if n_fig <= 0
     warning('figures are not found');
     return
