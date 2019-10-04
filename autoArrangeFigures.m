@@ -30,7 +30,7 @@ if nargin < 2
     monitor_id = 1;
 end
 
-task_bar_offset = [30 50];
+task_bar_offset = [0 20];
 
 %%
 N_FIG = NH * NW;
@@ -46,41 +46,17 @@ if n_fig <= 0
     return
 end
 
+% calculate usable display size
 screen_sz = get(0,'MonitorPositions');
 screen_sz = screen_sz(monitor_id, :);
 scn_w = screen_sz(3) - task_bar_offset(1);
 scn_h = screen_sz(4) - task_bar_offset(2);
 scn_w_begin = screen_sz(1) + task_bar_offset(1);
-scn_h_begin = screen_sz(2) + task_bar_offset(2);
+scn_h_begin = screen_sz(2) + task_bar_offset(2) - 10;
 
-if autoArrange==0
-    if n_fig > N_FIG
-        autoArrange = 1;
-        warning('too many figures than you told. change to autoArrange');
-    else
-        nh = NH;
-        nw = NW;
-    end
-end
-
-if autoArrange == 1
-    grid = [2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4;
-            3 3 3 3 3 3 3 3 4 4 4 5 5 5 5 5 5 5 5 6 6 6 7 7 7 7 7]';
-   
-    if n_fig > length(grid)
-        warning('too many figures(maximum = %d)',length(grid))
-        return
-    end
-    
-    if scn_w > scn_h
-        nh = grid(n_fig,1);
-        nw = grid(n_fig,2);
-    else
-        nh = grid(n_fig,2);
-        nw = grid(n_fig,1);
-    end
-end
-
+% calculate grid size
+nh=floor(sqrt(n_fig));
+nw=ceil(n_fig/nh);
 
 fig_width = scn_w/nw;
 fig_height = scn_h/nh;
