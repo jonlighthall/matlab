@@ -1,6 +1,10 @@
 close all
 clear variables
+
+% read in locations
 data=readtable('locations.txt');
+
+% create coordinate pairs
 len=length(data.index);
 long=zeros(len*2,1);
 lat=zeros(len*2,1);
@@ -13,6 +17,8 @@ end
 
 varNames = {'clarke' ;'iau73'; 'wgs84';'sphere'};
 
+% calculate range, bearing, and reverse bearing using dist() for a specific
+% model and add to data table
 range=zeros(len,1);
 b=zeros(len,1);
 br=zeros(len,1);
@@ -23,9 +29,10 @@ data.range=range;
 data.bearing=b;
 data.reverse=br;
 
+% calculate range, bearing, and reverse bearing using dist() for all models
+% and create range and bearing tables
 sz = [len 4];
 varTypes =  strings([4,1])+'double';
-
 ranges = table('Size',sz,'VariableTypes',varTypes','VariableNames',varNames);
 bearings= table('Size',sz,'VariableTypes',varTypes','VariableNames',varNames);
 rng=zeros(len,4);
@@ -42,6 +49,9 @@ end
 ranges.Variables=rng;
 bearings.Variables=az;
 
+% calculate range, bearing, and reverse bearing using the built-in MATLAB
+% fucntion distance() for comprable models and add to the range and bearing
+% tables 
 ranges.clarke2=zeros(len,1);
 ranges.iau68=zeros(len,1);
 ranges.earth=zeros(len,1);
