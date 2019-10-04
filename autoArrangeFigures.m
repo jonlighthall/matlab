@@ -1,6 +1,6 @@
 function autoArrangeFigures(monitor_id)
-% INPUT  :
-% OUTPUT :
+% INPUT  : target monitor (optional)
+% OUTPUT : none
 %
 % get every figures that are opened now and arrange them.
 %
@@ -9,6 +9,9 @@ function autoArrangeFigures(monitor_id)
 % monitor as Monitor1.
 %
 % Notes
+% 2019.04.23 use grid calc from https://github.com/jonlighthall/root/blob/master/fit.cc#L798
+% JCL, NRL, USA
+% 
 %  + 2017.1.20 use monitor id(Adam Danz's idea)
 %
 % leejaejun, Koreatech, Korea Republic, 2014.12.13
@@ -53,7 +56,7 @@ for i=1:1:nh
             scn_h_begin+scn_h-fig_height*i ...
             fig_width ...
             fig_height];
-        set(figHandle(fig_cnt),'OuterPosition',fig_pos);
+        set(figHandle(fig_cnt),'units','pixels','OuterPosition',fig_pos);
         fig_cnt = fig_cnt + 1;
     end
 end
