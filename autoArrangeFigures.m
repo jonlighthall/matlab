@@ -15,10 +15,10 @@ if nargin < 1
 end
 
 % count and sort figues
-figHandle = sortFigureHandles(findobj('Type','figure'));
+figHandle = handle(sort(findobj('type','figure')));
 n_fig = size(figHandle,1);
 if n_fig <= 0
-    warning('figures are not found');
+    warning('no figures to arrange');
     return
 end
 
@@ -55,7 +55,3 @@ for i=1:1:nh
 end
 end
 
-function figSorted = sortFigureHandles(figs)
-[~, idx] = sort([figs.Number]);
-figSorted = figs(idx);
-end
