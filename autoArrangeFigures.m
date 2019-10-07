@@ -2,7 +2,7 @@ function autoArrangeFigures(monitor_id)
 % INPUT  : target monitor (optional)
 % OUTPUT : none
 %
-% Arranges every figure in numerical order. The uniform figure size is 
+% Arranges every figure in numerical order. The uniform figure size is
 % calculated to fill the given monitor.
 %
 % Revisions
@@ -53,10 +53,9 @@ for i=1:1:nh
         fig_cnt = fig_cnt + 1;
     end
 end
-
 end
 
 function figSorted = sortFigureHandles(figs)
-    [~, idx] = sort([figs.Number]);
-    figSorted = figs(idx);
+[~, idx] = sort([figs.Number]);
+figSorted = figs(idx);
 end
