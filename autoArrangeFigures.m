@@ -14,9 +14,7 @@ if nargin < 1
     monitor_id = 1;
 end
 
-task_bar_offset = [0 20];
-
-%
+% count and sort figues
 figHandle = sortFigureHandles(findobj('Type','figure'));
 n_fig = size(figHandle,1);
 if n_fig <= 0
@@ -27,6 +25,7 @@ end
 % calculate usable display size
 screen_sz = get(0,'MonitorPositions');
 screen_sz = screen_sz(monitor_id, :);
+task_bar_offset = [0 20];
 scn_w = screen_sz(3) - task_bar_offset(1);
 scn_h = screen_sz(4) - task_bar_offset(2);
 scn_w_begin = screen_sz(1) + task_bar_offset(1);
@@ -36,6 +35,7 @@ scn_h_begin = screen_sz(2) + task_bar_offset(2) - 10;
 nh=floor(sqrt(n_fig));
 nw=ceil(n_fig/nh);
 
+% calcuate figure size
 fig_width = scn_w/nw;
 fig_height = scn_h/nh;
 
