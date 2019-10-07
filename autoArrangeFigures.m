@@ -2,20 +2,13 @@ function autoArrangeFigures(monitor_id)
 % INPUT  : target monitor (optional)
 % OUTPUT : none
 %
-% get every figures that are opened now and arrange them.
+% Arranges every figure in numerical order. The uniform figure size is 
+% calculated to fill the given monitor.
 %
-% autoArrangeFigures selects automatically Monitor1.
-% If you are dual(or more than that) monitor user, I recommend to set wide
-% monitor as Monitor1.
-%
-% Notes
-% 2019.04.23 use grid calc from https://github.com/jonlighthall/root/blob/master/fit.cc#L798
-% JCL, NRL, USA
-% 
-%  + 2017.1.20 use monitor id(Adam Danz's idea)
-%
-% leejaejun, Koreatech, Korea Republic, 2014.12.13
-% jaejun0201@gmail.com
+% Revisions
+% 2019.04.23 JCL, NRL, USA use calculated grid
+% 2017.01.20 use monitor id (Adam Danz's idea)
+% 2014.12.13 leejaejun, Koreatech, Korea Republic, jaejun0201@gmail.com
 
 if nargin < 1
     monitor_id = 1;
@@ -23,7 +16,7 @@ end
 
 task_bar_offset = [0 20];
 
-%%
+%
 figHandle = sortFigureHandles(findobj('Type','figure'));
 n_fig = size(figHandle,1);
 if n_fig <= 0
