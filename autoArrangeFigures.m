@@ -1,17 +1,21 @@
 function autoArrangeFigures(monitor_id)
 % INPUT  : target monitor (optional)
-% OUTPUT : none
+% OUTPUT : beautifully arranged figures
 %
+% Funciton:
 % Arranges every figure in numerical order. The uniform figure size is
 % calculated to fill the given monitor.
 %
-% Revisions
+% Settings:
+% Set default monitor and system-dependent task bar size.
+%
+% Revisions:
 % 2019.04.23 JCL, NRL, USA use calculated grid
 % 2017.01.20 use monitor id (Adam Danz's idea)
 % 2014.12.13 leejaejun, Koreatech, Korea Republic, jaejun0201@gmail.com
 
 if nargin < 1
-    monitor_id = 1;
+    monitor_id = 1; % default monitor
 end
 
 % count and sort figues
