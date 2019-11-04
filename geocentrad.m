@@ -28,5 +28,5 @@ a=req;
 b=rpol;
 phi=deg2rad(lat);
 
-rad = sqrt(((a^2*cos(phi))^2+(b^2*sin(phi))^2)/((a*cos(phi))^2+(b*sin(phi))^2));
+rad = sqrt(((a.^2.*cos(phi)).^2+(b.^2.*sin(phi)).^2)./((a.*cos(phi)).^2+(b.*sin(phi)).^2));
 end
