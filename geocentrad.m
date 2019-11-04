@@ -1,6 +1,15 @@
-function [rad] = geocentrad(lat,req,rpol)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+function rad = geocentrad(lat,req,rpol)
+%GEOCENTRAD Calcuates geocentric radius as a function of geodetic latitude.
+%   Returns the distance RAD from the center of a spheroid to an elipical
+%   surface with equatorial radius REQ and polar radius RPOL at geodetic
+%   latitude LAT.
+%
+%   RAD = GEOCENTRAD(LAT) returns geocentric radius of the earth in meters
+%   at latidue LAT.
+%
+%   RAD = GEOCENTRAD(LAT,REQ,RPOL) returns the radius of an ellipsoid with
+%   semimajor (equitorial) axis REQ and semiminor (polar) axis RPOL.
+
 switch nargin
     case 3
         
