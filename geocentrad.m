@@ -39,15 +39,12 @@ switch nargin
 end
 
 % convert to geodetic latitude
-glat=atan(tan(deg2rad(lat))/((1-f)^2));
-q2=((lat>90) &(lat<=180));
-q3=((lat>180) &(lat<=270));
-glat=glat+q2*pi()/2+q3*-pi()/2;
+glat=geoc2geod(lat,f);
 
 % convert to standard notation
 a=req;
 b=rpol;
-phi=glat;
+phi=deg2rad(glat);
 
 % radius as a function of geodetic latitude
 rad = sqrt(((a.^2.*cos(phi)).^2+(b.^2.*sin(phi)).^2)./...
