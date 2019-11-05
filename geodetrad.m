@@ -1,22 +1,19 @@
-function rad = geocentrad(lat,f,req)
-%GEOCENTRAD Calcuates geocentric radius as a function of geocentric
-%latitude.
-%   Returns the distance RAD from the center of a spheroid to an elipical
-%   surface with flattening F and equatorial radius REQ at geocentric
+function rad = geodetrad(lat,f,req)
+%GEODETRAD Calcuates geocentric radius as a function of geodetic latitude.
+%   Returns the distance RAD from the center of a spheroid to the elipical
+%   surface with flattening F and equatorial radius REQ at geodetic
 %   latitude LAT, specified in degrees.
 %
-%   RAD = GEOCENTRAD(LAT) returns geocentric radius in meters of the earth
-%   at latidue LAT in degrees.
+%   RAD = GEODETRAD(LAT) returns geocentric radius in meters of the earth
+%   at latidue LAT in degrees. The units of RAD are in meters.
 %
-%   RAD = GEOCENTRAD(LAT,MODEL) returns the radius in meters of the
+%   RAD = GEODETRAD(LAT,MODEL) returns the radius in meters of the
 %   reference ellipsoid MODEL at latitude LAT in degrees. The units of RAD
 %   are in meters.
 %
-%   RAD = GEOCENTRAD(LAT,F,REQ) returns the radius of an ellipsoid with
-%   flattening F and semimajor (equitorial) axis REQ at geocentric latitude
+%   RAD = GEODETRAD(LAT,F,REQ) returns the radius of an ellipsoid with
+%   flattening F and semimajor (equitorial) axis REQ at geodetic latitude
 %   LAT in degrees. The units of RAD will match the units of REQ.
-%
-%   Replaces GEOCRADIUS
 
 switch nargin
     case 3
@@ -38,16 +35,9 @@ switch nargin
         return
 end
 
-% convert to geodetic latitude
-glat=atan(tan(deg2rad(lat))/((1-f)^2));
-q2=((lat>90) &(lat<=180));
-q3=((lat>180) &(lat<=270));
-glat=glat+q2*pi()/2+q3*-pi()/2;
-
-% convert to standard notation
 a=req;
 b=rpol;
-phi=glat;
+phi=deg2rad(lat);
 
 % radius as a function of geodetic latitude
 rad = sqrt(((a.^2.*cos(phi)).^2+(b.^2.*sin(phi)).^2)./...
