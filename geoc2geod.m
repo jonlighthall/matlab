@@ -22,24 +22,17 @@ switch nargin
 end
 
 if(do_rad)
-    if(f==0)
-        glat=lat;
-    else
+   
         glat=atan2(sin(lat)/((1-f)^2),cos(lat));
     end
 else
-    glat=atand(tand(lat)/((1-f)^2));
-    
-    q2=((lat> 90)&(lat<=180));
-    q3=((lat>180)&(lat<=270));
-    q4=((lat>270)&(lat<=360));
-    
-    if(f~=0 && do_match)
-        % match the output of geodeticLatitudeFromGeocentric using atan2, which
-        % maps to -180 to +180
-        glat=glat+q2*180+q3*-180+q4*0;
+    if(f==0)
+        glat=lat;
     else
-        glat=glat+q2*180+q3*180+q4*360;
+        glat=atan2d(sind(lat)/((1-f)^2),cosd(lat));
+        if(~do_match)
+            glat=mod(glat,360);
+        end
     end
 end
 end
