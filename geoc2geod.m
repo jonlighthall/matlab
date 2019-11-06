@@ -21,13 +21,11 @@ switch nargin
         return
 end
 
-if(do_rad)
-   
-        glat=atan2(sin(lat)/((1-f)^2),cos(lat));
-    end
+if(f==0)
+    glat=lat;
 else
-    if(f==0)
-        glat=lat;
+    if(do_rad)
+        glat=atan2(sin(lat)/((1-f)^2),cos(lat));
     else
         glat=atan2d(sind(lat)/((1-f)^2),cosd(lat));
         if(~do_match)
