@@ -1,22 +1,23 @@
-function rad = geocentrad(lat,f,req)
-%GEOCENTRAD Calcuates geocentric radius as a function of geocentric
-%latitude.
+function rad = geoc2rad(lat,f,req)
+%GEOC2RAD Calcuates geocentric radius as a function of geocentric latitude.
 %   Returns the distance RAD from the center of a spheroid to an elipical
 %   surface with flattening F and equatorial radius REQ at geocentric
 %   latitude LAT, specified in degrees.
 %
-%   RAD = GEOCENTRAD(LAT) returns geocentric radius in meters of the earth
-%   at latidue LAT in degrees.
+%   RAD = GEOC2RAD(LAT) returns geocentric radius in meters of the earth at
+%   latidue LAT in degrees.
 %
-%   RAD = GEOCENTRAD(LAT,MODEL) returns the radius in meters of the
-%   reference ellipsoid MODEL at latitude LAT in degrees. The units of RAD
-%   are in meters.
+%   RAD = GEOC2RAD(LAT,MODEL) returns the radius in meters of the reference
+%   ellipsoid MODEL at latitude LAT in degrees. The units of RAD are in
+%   meters.
 %
-%   RAD = GEOCENTRAD(LAT,F,REQ) returns the radius of an ellipsoid with
+%   RAD = GEOC2RAD(LAT,F,REQ) returns the radius of an ellipsoid with
 %   flattening F and semimajor (equitorial) axis REQ at geocentric latitude
 %   LAT in degrees. The units of RAD will match the units of REQ.
 %
-%   Replaces GEOCRADIUS
+%   Replaces GEOCRADIUS found in the Aerospace Toolbox.
+%
+%   See also GEOD2RAD GEOCRADIUS
 
 switch nargin
     case 3
@@ -39,7 +40,7 @@ switch nargin
 end
 
 % convert to geodetic latitude
-glat=geoc2geod(lat,f);
+glat=geoc2geod(lat,f,false);
 
 % convert to standard notation
 a=req;
