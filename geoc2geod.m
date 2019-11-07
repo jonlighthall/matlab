@@ -1,11 +1,33 @@
 function [glat] = geoc2geod(lat,f,do_match,R)
 %GEOC2GEOD Convert geocentric latitude to geodetic latitude. Only valid for
 %points on the surface of the ellipsoid.
-%   Replaces geocentricLatitude from the Mapping Toolbox and geoc2geod from
-%   the Aerospace Toolbox.
 %
-%   See also GEODETICLATITUDEFROMGEOCENTRIC GEOCENTRICLATITUDE GEOD2GEOC
-do_rad=false;
+%   Replaces geodeticLatitudeFromGeocentric from the Mapping Toolbox and
+%   geoc2geod from the Aerospace Toolbox. Input for either function are
+%   accepted and outputs are matched (see below).
+%
+%   phi = geodeticLatitudeFromGeocentric(psi,f) returns the geodetic
+%   latitude corresponding to geocentric latitude psi on an ellipsoid with
+%   flattening f.
+%
+%   phi = geodeticLatitudeFromGeocentric(psi,f,angleUnit) specifies the
+%   units of input psi and output phi.
+%
+%   phi  = geoc2geod(geocentricLatitude, radii) converts an array of m-by-1
+%   geocentric latitudes and an array of radii from the center of the
+%   planet into an array of m-by-1 geodetic latitudes.
+% 
+%   phi  = geoc2geod(geocentricLatitude, radii, model) converts for a
+%   specific ellipsoid planet.
+% 
+%   phi  = geoc2geod(geocentricLatitude, radii, flattening,
+%   equatorialRadius) converts for a custom ellipsoid planet defined by
+%   flattening and the equatorial radius.
+% 
+%   See also GEODETICLATITUDEFROMGEOCENTRIC GEOCENTRICLATITUDE GEOC2GEOD
+%   GEOD2GEOC
+do_radian=false;
+do_radius=false;
 switch nargin
     case 4
         % assuming geod2geoc input
