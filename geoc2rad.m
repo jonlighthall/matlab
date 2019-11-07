@@ -22,8 +22,6 @@ function rad = geoc2rad(lat,f,req)
 switch nargin
     case 3
         rpol=req*(1-f);
-        fprintf('calculating radius for ellipsoid with semimajor axis ',...
-            '%f and semiminor axis %f',req,rpol);
     case 2
         E=referenceEllipsoid(f);
         req=E.SemimajorAxis;
@@ -34,9 +32,6 @@ switch nargin
         req=E.SemimajorAxis;
         f=E.Flattening;
         rpol=req*(1-f);
-    otherwise
-        disp('please enter either 1 or 3 arguments')
-        return
 end
 
 % convert to geodetic latitude
