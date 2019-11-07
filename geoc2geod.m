@@ -1,4 +1,4 @@
-function [glat] = geoc2geod(lat,f,do_match,R)
+function [phi] = geoc2geod(psi,f,do_match,R)
 %GEOC2GEOD Convert geocentric latitude to geodetic latitude. Only valid for
 %points on the surface of the ellipsoid.
 %
@@ -6,23 +6,24 @@ function [glat] = geoc2geod(lat,f,do_match,R)
 %   geoc2geod from the Aerospace Toolbox. Input for either function are
 %   accepted and outputs are matched (see below).
 %
-%   phi = geodeticLatitudeFromGeocentric(psi,f) returns the geodetic
-%   latitude corresponding to geocentric latitude psi on an ellipsoid with
-%   flattening f.
+%   phi = geoc2geod(psi,f) returns the geodetic latitude corresponding to
+%   geocentric latitude psi on an ellipsoid with flattening f.
 %
-%   phi = geodeticLatitudeFromGeocentric(psi,f,angleUnit) specifies the
-%   units of input psi and output phi.
+%   phi = geoc2geod(psi,f,angleUnit) specifies the units of input psi and
+%   output phi.
 %
-%   phi  = geoc2geod(geocentricLatitude, radii) converts an array of m-by-1
-%   geocentric latitudes and an array of radii from the center of the
-%   planet into an array of m-by-1 geodetic latitudes.
+%   phi = geoc2geod(psi,f,do_match) specifies the output to match the atan2
+%   behavior of the original function.
+%
+%   phi  = geoc2geod(psi, radii) converts an array of m-by-1 geocentric
+%   latitudes and an array of radii from the center of the planet into an
+%   array of m-by-1 geodetic latitudes.
 % 
-%   phi  = geoc2geod(geocentricLatitude, radii, model) converts for a
-%   specific ellipsoid planet.
+%   phi  = geoc2geod(psi, radii, model) converts for a specific ellipsoid
+%   planet.
 % 
-%   phi  = geoc2geod(geocentricLatitude, radii, flattening,
-%   equatorialRadius) converts for a custom ellipsoid planet defined by
-%   flattening and the equatorial radius.
+%   phi  = geoc2geod(psi, radii, f, equatorialRadius) converts for a custom
+%   ellipsoid planet defined by flattening f and the equatorial radius.
 % 
 %   See also GEODETICLATITUDEFROMGEOCENTRIC GEOCENTRICLATITUDE GEOC2GEOD
 %   GEOD2GEOC
@@ -67,26 +68,25 @@ if(do_radius)
 end
 
 if(f==0)
-    glat=lat;
+    phi=psi;
 else
     if(do_radian)
-        glat=atan2(sin(lat)/((1-f)^2),cos(lat));
+        phi=atan2(sin(psi)/((1-f)^2),cos(psi));
     else            
-        glat=atan2d(sind(lat)/((1-f)^2),cosd(lat));
+        phi=atan2d(sind(psi)/((1-f)^2),cosd(psi));
         if(~do_match)
-            glat=mod(glat,360);
+            phi=mod(phi,360);
         end
         if(do_radius)
-            ua=glat;
-            ra=geoc2rad(lat,f,R); % geocentric radius at point on surface intersecting radius
-            l=r-ra; %g  eocentric altitude
-            dlamda=ua-lat;
+            ua=phi;
+            ra=geoc2rad(psi,f,R); % geocentric radius at point on surface intersecting radius
+            l=r-ra; %geocentric altitude
+            dlamda=ua-psi;
             h=l.*cosd(dlamda); %geodetic height
             rhoa=R.*(1-f).^2./(1-(2.*f-f.^2).*sind(ua).^2).^(3/2);
             %rhoa=rcurve('meridian',E,ua,'degrees');
             du=rad2deg(atan2(l.*sind(dlamda),rhoa+h));
             phi=ua-du;
-            glat=phi;
         end
     end
 end
