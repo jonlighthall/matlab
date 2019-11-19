@@ -20,8 +20,6 @@ function rad = geod2rad(lat,f,req)
 switch nargin
     case 3
         rpol=req*(1-f);
-        fprintf('calculating radius for ellipsoid with semimajor axis ',...
-            '%f and semiminor axis %f',req,rpol);
     case 2
         E=referenceEllipsoid(f);
         req=E.SemimajorAxis;
