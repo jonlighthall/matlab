@@ -3,19 +3,19 @@ This repsoitory contains general programs written in MATLAB.
 
 ## Contents
 
-| program              | description                           | origin | test | files output
-| -------------------- | ------------------------------------  | ----           | ----              | ----        |
-| [`autoArrangeFigures.m`](autoArrangeFigures.m) | arrange figues | https://www.mathworks.com/matlabcentral/fileexchange/48480-automatically-arrange-figure-windows | [`test_autoArrangeFigures.m`](test_autoArrangeFigures.m)
-| [`dist.m`](dist.m) | distance | http://mooring.ucsd.edu/software/matlab/doc/ocean/distbear.html | [`test_dist.m`](test_dist.m)
+| program              | description                           | origin | test |
+| -------------------- | ------------------------------------  | ----           | ----              
+| [`autoArrangeFigures.m`](autoArrangeFigures.m) | arrange figues | [`autoArrangeFigures.m`](https://www.mathworks.com/matlabcentral/fileexchange/48480-automatically-arrange-figure-windows) | [`test_autoArrangeFigures.m`](test_autoArrangeFigures.m)
+| [`dist.m`](dist.m) | distance | [`distbear.m`](http://mooring.ucsd.edu/software/matlab/doc/ocean/distbear.html) | [`test_dist.m`](test_dist.m)
 | [`comb.m`](comb.m) | combination |
 | [`perm.m`](perm.m) | permutation |
 | [`plot_hist.m`](plot_hist.m) | plot histogram |
 | [`tantan.m`](tantan.m) | atan2 |
-| [`geoc2geod.m`](geoc2geod.m) | combination | [`test_geoc2geod.m`](test_geoc2geod.m)
-| [`geod2geoc.m`](geod2geoc.m) | combination |
-| [`geoc2rad.m`](geoc2rad.m) | combination |
-| [`geod2rad.m`](geod2rad.m) | combination |
-| [`load_constants.m`](load_constants.m) | combination |
+| [`geoc2geod.m`](geoc2geod.m) | geocentric to geodetic | | [`test_geoc2geod.m`](test_geoc2geod.m)
+| [`geod2geoc.m`](geod2geoc.m) | geodetic to geocentric |
+| [`geoc2rad.m`](geoc2rad.m) | geocentric to radius |
+| [`geod2rad.m`](geod2rad.m) | geodetic to radius |
+| [`load_constants.m`](load_constants.m) | unit conversions |
 
 ## Installation
 
