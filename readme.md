@@ -16,6 +16,7 @@ This repsoitory contains general programs written in MATLAB.
 | [`geoc2rad.m`](geoc2rad.m) | geocentric to radius |
 | [`geod2rad.m`](geod2rad.m) | geodetic to radius |
 | [`load_constants.m`](load_constants.m) | unit conversions |
+| [`helo.m`](hello.m) | hello world |
 
 ## Installation
 
