@@ -1,3 +1,4 @@
+%PLOT_HIST
 hdata(:,1)=normrnd(50,15,[1,10000]);
 hdata(:,2)=normrnd(30,5,[1,10000]);
 

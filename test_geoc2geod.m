@@ -1,4 +1,4 @@
-%test geoc2geod inputs/outputs
+% test geoc2geod inputs/outputs
 gd = geoc2geod(45, 6379136)
 gd = geoc2geod([0 45 90], 6379136, 'WGS84')
 f = 1/196.877360;

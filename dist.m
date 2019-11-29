@@ -1,62 +1,63 @@
 function [range,A12,A21]=dist(lat,long,arg1,arg2)
-% DIST Computes distance and bearing between points on the earth using
+%DIST Computes distance and bearing between points on the earth using
 % various reference spheroids. 
 %
-%  [RANGE,AF,AR]=DIST(LAT,LONG) computes the ranges RANGE between points
-%  specified in the LAT and LONG vectors (decimal degrees with positive
-%  indicating north/east). Forward and reverse bearings (degrees) are
-%  returned in AF, AR. 
-%
-%  [RANGE,GLAT,GLONG]=DIST(LAT,LONG,N) computes N-point geodesics between
-%  successive points. Each successive geodesic occupies it's own row (N>=2)
-%
-%  [..]=DIST(...,'ellipsoid') uses the specified ellipsoid to get distances
-%  and bearing. Available ellipsoids are: 
-%
-%  'clarke66'  Clarke 1866
-%  'iau73'     IAU 1973
-%  'wgs84'     WGS 1984
-%  'sphere'    Sphere of radius 6371.0 km
-%
-%  The default is 'wgs84'.
-%
-%  Ellipsoid formulas are recommended for distance d<2000 km, but can be
-%  used for longer distances. 
-%
-%  Notes:
+%   [RANGE,AF,AR]=DIST(LAT,LONG) computes the ranges RANGE between points
+%   specified in the LAT and LONG vectors (decimal degrees with positive
+%   indicating north/east). Forward and reverse bearings (degrees) are
+%   returned in AF, AR. 
+%   
+%   [RANGE,GLAT,GLONG]=DIST(LAT,LONG,N) computes N-point geodesics between
+%   successive points. Each successive geodesic occupies it's own row
+%   (N>=2)
+%   
+%   [..]=DIST(...,'ellipsoid') uses the specified ellipsoid to get
+%   distances and bearing. Available ellipsoids are:
+%   
+%   'clarke66'  Clarke 1866
+%   'iau73'     IAU 1973
+%   'wgs84'     WGS 1984
+%   'sphere'    Sphere of radius 6371.0 km
+%   
+%   The default is 'wgs84'.
+%   
+%   Ellipsoid formulas are recommended for distance d<2000 km, but can be
+%   used for longer distances. 
+%   
+%   Notes:    
 %   A Newhall (WHOI) Sep 1997
-%    Modified and fixed a bug found in Matlab version 5. This routine may
-%    interfere with dist that is supplied with matlab's neural net toolbox. 
-%
-%  RP (WHOI) 3/Dec/91
-%    Mostly copied from BDC "dist.f" routine (copied from ....?), but then
-%    wildly modified to bring it in line with Matlab vectorization. 
-%  RP (WHOI) 6/Dec/91
-%    Feeping Creaturism! - added geodesic computations. This turned out to
-%    be pretty hairy since there were a lot of branch problems with asin,
-%    atan when computing geodesics subtending > 90 degrees that were
-%    ignored in the original code! 
-%  R. Pawlowicz (WHOI) 15/Jan/91
-%    Fixed some bothersome special cases, like when computing geodesics and
-%    N=2, or LAT=0... 
-%
-%  GIVEN THE LATITUDES AND LONGITUDES (IN DEG.) IT ASSUMES THE IAU SPHERO
-%  DEFINED IN THE NOTES ON PAGE 523 OF THE EXPLANATORY SUPPLEMENT TO THE
-%  AMERICAN EPHEMERIS. 
-%
-%  THIS PROGRAM COMPUTES THE DISTANCE ALONG THE NORMAL SECTION (IN M.) OF A
-%  SPECIFIED REFERENCE SPHEROID GIVEN THE GEODETIC LATITUDES AND LONGITUDES
-%  OF THE END POINTS *** IN DECIMAL DEGREES ***
-%
-%  IT USES ROBBIN'S FORMULA, AS GIVEN BY BOMFORD, GEODESY, FOURTH EDITION,
-%  P. 122.  CORRECT TO ONE PART IN 10**8 AT 1600 KM.  ERRORS OF 20 M AT
-%  5000 KM. 
-%
-%  CHECK:  SMITHSONIAN METEOROLOGICAL TABLES, PP. 483 AND 484, GIVES
-%  LENGTHS OF ONE DEGREE OF LATITUDE AND LONGITUDE AS A FUNCTION OF
-%  LATITUDE. (SO DOES THE EPHEMERIS ABOVE) 
-%
-%  PETER WORCESTER, AS TOLD TO BRUCE CORNUELLE...1983 MAY 27
+%       Modified and fixed a bug found in Matlab version 5. This routine
+%       may interfere with dist that is supplied with matlab's neural net
+%       toolbox.
+%   RP (WHOI) 3/Dec/91
+%       Mostly copied from BDC "dist.f" routine (copied from ....?), but
+%       then wildly modified to bring it in line with Matlab vectorization.
+%   RP (WHOI) 6/Dec/91
+%       Feeping Creaturism! - added geodesic computations. This turned out
+%       to be pretty hairy since there were a lot of branch problems with
+%       asin, atan when computing geodesics subtending > 90 degrees that
+%       were ignored in the original code! 
+%   R. Pawlowicz (WHOI) 15/Jan/91
+%       Fixed some bothersome special cases, like when computing geodesics
+%       and N=2, or LAT=0...
+%   
+%   GIVEN THE LATITUDES AND LONGITUDES (IN DEG.) IT ASSUMES THE IAU SPHERO
+%   DEFINED IN THE NOTES ON PAGE 523 OF THE EXPLANATORY SUPPLEMENT TO THE
+%   AMERICAN EPHEMERIS. 
+%   
+%   THIS PROGRAM COMPUTES THE DISTANCE ALONG THE NORMAL SECTION (IN M.) OF
+%   A SPECIFIED REFERENCE SPHEROID GIVEN THE GEODETIC LATITUDES AND
+%   LONGITUDES OF THE END POINTS *** IN DECIMAL DEGREES ***
+%   
+%   IT USES ROBBIN'S FORMULA, AS GIVEN BY BOMFORD, GEODESY, FOURTH EDITION,
+%   P. 122.  CORRECT TO ONE PART IN 10**8 AT 1600 KM.  ERRORS OF 20 M AT
+%   5000 KM. 
+%   
+%   CHECK:  SMITHSONIAN METEOROLOGICAL TABLES, PP. 483 AND 484, GIVES
+%   LENGTHS OF ONE DEGREE OF LATITUDE AND LONGITUDE AS A FUNCTION OF
+%   LATITUDE. (SO DOES THE EPHEMERIS ABOVE) 
+%   
+%   PETER WORCESTER, AS TOLD TO BRUCE CORNUELLE...1983 MAY 27
 
 spheroid='wgs84';
 geodes=0;
