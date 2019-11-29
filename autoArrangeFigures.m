@@ -1,20 +1,20 @@
 function autoArrangeFigures(monitor_id)
-% AUTOARRANGEFIGURES Arranges figures in numerical order.
+%AUTOARRANGEFIGURES Arranges figures in numerical order.
 %
-% INPUT  : target monitor (optional)
-% OUTPUT : none
-%
-% Funciton: The number of figues is used to determing a plotting grid. A
-% uniform figure size is calculated to fill the given monitor. Figues are
-% sorted in numerical order.
-%
-% Settings:
-% Set default monitor and system-dependent task bar size.
-%
-% Revisions:
-% 2019.04.23 JCL, NRL, USA use calculated grid
-% 2017.01.20 use monitor id (Adam Danz's idea)
-% 2014.12.13 leejaejun, Koreatech, Korea Republic, jaejun0201@gmail.com
+%   INPUT  : target monitor (optional)
+%   OUTPUT : none
+%   
+%   Funciton: The number of figues is used to determing a plotting grid. A
+%   uniform figure size is calculated to fill the given monitor. Figues are
+%   sorted in numerical order.
+%   
+%   Settings:
+%   Set default monitor and system-dependent task bar size.
+%   
+%   Revisions:
+%   2019.04.23 JCL, NRL, USA use calculated grid
+%   2017.01.20 use monitor id (Adam Danz's idea)
+%   2014.12.13 leejaejun, Koreatech, Korea Republic, jaejun0201@gmail.com
 
 if nargin < 1
     monitor_id = 1; % default monitor
