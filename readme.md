@@ -3,7 +3,7 @@ This repsoitory contains general programs written in MATLAB.
 
 ## Contents
 
-| program              | description                           | origin | test |
+| program              | description                           | reference | test |
 | -------------------- | ------------------------------------  | ----           | ----              
 | [`autoArrangeFigures.m`](autoArrangeFigures.m) | arrange figues | [`autoArrangeFigures.m`](https://www.mathworks.com/matlabcentral/fileexchange/48480-automatically-arrange-figure-windows) | [`test_autoArrangeFigures.m`](test_autoArrangeFigures.m)
 | [`dist.m`](dist.m) | distance | [`distbear.m`](http://mooring.ucsd.edu/software/matlab/doc/ocean/distbear.html) | [`test_dist.m`](test_dist.m)
