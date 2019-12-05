@@ -2,5 +2,7 @@
 disp('hello world');
 disp('MATLAB');
 for i=1:3
-   fprintf(' %d beeps\n',i); 
+    beep
+    fprintf(' %d beeps\n',i);
+    pause(1)
 end
