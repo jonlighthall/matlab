@@ -4,17 +4,18 @@ do_print=true;
 
 %% multiplicitive constants
 % equivalence definitions
-ft2m=0.3048; %feet to meters (exact)
-nmi2m=1852; %nautical miles to meters (exact)
+ft2m=0.3048; % feet to meters (exact)
+nmi2m=1852; % nautical miles to meters (exact)
 
 % functional definitions
-m2nmi=1./nmi2m;
-kt2ms=nmi2m/(60.*60);
-ms2kt=1/kt2ms;
+m2nmi=1./nmi2m; % meters to nautical miles
+kt2ms=nmi2m/(60.*60); % knots to meters-per-second
+ms2kt=1/kt2ms; % meters-per-second to knots
 
-m2ft=1/ft2m;
-m2yd=m2ft/3;
-yd2m=1/m2yd;
+m2ft=1/ft2m; % meters to feet
+m2yd=m2ft/3; % meters to yards
+yd2m=1/m2yd; % yards to meters
+kyd2m=(ft2m*3*1000); % kiloyards to meters
 
 %% additive constants
 dB_m2yd=20*log10(m2yd); % decibels, meter reference to yard reference
@@ -39,6 +40,7 @@ if(do_print)
     fprintf(strcat('   m2ft = ',fmt,'\n'),m2ft);
     fprintf(strcat('   m2yd = ',fmt,'\n'),m2yd);
     fprintf(strcat('   yd2m = ',fmt,'\n'),yd2m);
+    fprintf(strcat('  kyd2m = ',fmt,'\n'),kyd2m);
     fprintf(strcat('dB_m2yd = ',fmt,'\n'),dB_m2yd);
     fprintf(strcat('dB_yd2m = ',fmt,'\n'),dB_yd2m);
 end
