@@ -1,8 +1,14 @@
+function hello(loops)
 %HELLO Hello world program.
 disp('hello world');
 disp('MATLAB');
-for i=1:3
-    beep
-    fprintf(' %d beeps\n',i);
-    pause(1)
+
+if nargin==0
+    loops=3;
+end
+ for i=1:loops
+     beep     
+     fprintf(' %d beeps\n',i);
+     pause(1)
+ end
 end
