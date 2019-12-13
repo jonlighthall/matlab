@@ -8,7 +8,11 @@ if nargin==0
 end
  for i=1:loops
      beep     
-     fprintf(' %d beeps\n',i);
+     if i==1
+        fprintf(' %d beep\n',i);
+    else
+        fprintf(' %d beeps\n',i);
+    end
      pause(1)
  end
 end
