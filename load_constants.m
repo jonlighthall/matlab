@@ -1,6 +1,6 @@
 %LOAD_CONSTANTS Constants for unit conversion
 %% conversion constants
-do_print=true;
+do_print=false;
 
 %% multiplicitive constants
 % equivalence definitions
@@ -8,14 +8,14 @@ ft2m=0.3048; % feet to meters (exact)
 nmi2m=1852; % nautical miles to meters (exact)
 
 % functional definitions
-m2nmi=1./nmi2m; % meters to nautical miles
-kt2ms=nmi2m/(60.*60); % knots to meters-per-second
+m2nmi=1/nmi2m; % meters to nautical miles
+kt2ms=nmi2m/(60*60); % knots to meters-per-second
 ms2kt=1/kt2ms; % meters-per-second to knots
 
 m2ft=1/ft2m; % meters to feet
 m2yd=m2ft/3; % meters to yards
 yd2m=1/m2yd; % yards to meters
-kyd2m=(ft2m*3*1000); % kiloyards to meters
+kyd2m=(yd2m*1000); % kiloyards to meters
 
 %% additive constants
 dB_m2yd=20*log10(m2yd); % decibels, meter reference to yard reference
