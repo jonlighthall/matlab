@@ -1,4 +1,4 @@
-function [cmap]=buildcmap(colors,levels)
+function [cmap]=buildcmap(colors,levels,force)
 % [cmap]=buildcmap(colors)
 %
 % This function can be used to build your own custom colormaps. Imagine if
@@ -24,8 +24,11 @@ function [cmap]=buildcmap(colors,levels)
 %  where n is the number of levels between each color such that the total
 %  number of levels is less than or equal to the input.
 %
+%  force: force the number of output levels to match the number specified.
+%  Extra levels will be added in a gradient to black.
+%
 % Example:
-%  [cmap]=buildcmap('wygbr');
+% [cmap]=buildcmap('wygbr');
 % %try the output cmap:
 % im=imread('cameraman.tif');
 % imshow(im), colorbar
@@ -37,10 +40,13 @@ function [cmap]=buildcmap(colors,levels)
 % Levels added by JCL 17 Jan. 2020
 %--------------------------------------------------------------------------
 
-if nargin<2
-    levels=256;
-    if nargin<1
-        colors='wrgbcmyk';
+if nargin<3
+    force=false;
+    if nargin<2
+        levels=256;
+        if nargin<1
+            colors='wrgbcmyk';
+        end
     end
 end
 
@@ -54,7 +60,7 @@ ncolors=length(colors)-1;
 
 
 bins=max(floor((levels-1)/ncolors),1);
-% diff1=(levels-1)-bins*ncolors;
+diff1=(levels-1)-bins*ncolors;
 
 vec=zeros(bins*ncolors,3);
 
@@ -159,5 +165,15 @@ for i=1:ncolors
          vec(beG:enD,3)=linspace(vec(beG,3),0.5,bins+1)';
  end
 end
+
+if diff1 && force
+    beG=bins*ncolors+1;
+    enD=levels;
+    bins=diff1;
+         vec(beG:enD,1)=linspace(vec(beG,1),0,bins+1)';
+         vec(beG:enD,2)=linspace(vec(beG,2),0,bins+1)';
+         vec(beG:enD,3)=linspace(vec(beG,3),0,bins+1)';
+end
+
 cmap=vec();
 end %end of buildcmap
