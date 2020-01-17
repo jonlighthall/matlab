@@ -19,6 +19,11 @@ function [cmap]=buildcmap(colors,levels)
 %  gradient of white to blue is needed, colors would be 'wb'; a rainbow of
 %  white+blue+red+green would be 'wbrg'.
 %
+%  levels: integer total number of levels in the overall color gradient.
+%  The number of levels calulated will be equal to colors+(colors-1)*n
+%  where n is the number of levels between each color such that the total
+%  number of levels is less than or equal to the input.
+%
 % Example:
 %  [cmap]=buildcmap('wygbr');
 % %try the output cmap:
@@ -28,6 +33,8 @@ function [cmap]=buildcmap(colors,levels)
 %
 % First version: 14 Feb. 2013
 % sohrabinia.m@gmail.com
+%
+% Levels added by JCL 17 Jan. 2020
 %--------------------------------------------------------------------------
 
 if nargin<2
