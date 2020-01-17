@@ -1,4 +1,4 @@
-function [cmap]=buildcmap(colors)
+function [cmap]=buildcmap(colors,levels)
 % [cmap]=buildcmap(colors)
 %
 % This function can be used to build your own custom colormaps. Imagine if
@@ -30,8 +30,11 @@ function [cmap]=buildcmap(colors)
 % sohrabinia.m@gmail.com
 %--------------------------------------------------------------------------
 
-if nargin<1
-    colors='wrgbcmyk';
+if nargin<2
+    levels=256;
+    if nargin<1
+        colors='wrgbcmyk';
+    end
 end
 
 if ~ischar(colors)
@@ -43,10 +46,10 @@ end
 ncolors=length(colors)-1;
 
 
-bins=round(255/ncolors);
-% diff1=255-bins*ncolors;
+bins=max(floor((levels-1)/ncolors),1);
+% diff1=(levels-1)-bins*ncolors;
 
-vec=zeros(300,3);
+vec=zeros(bins*ncolors,3);
 
 switch colors(1)
     case 'w'
@@ -106,5 +109,5 @@ for i=1:ncolors
          vec(beG:enD,3)=linspace(vec(beG,3),0,bins+1)';
  end
 end
-cmap=vec(1:bins*ncolors,:);
+cmap=vec();
 end %end of buildcmap
