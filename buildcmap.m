@@ -59,22 +59,41 @@ bins=max(floor((levels-1)/ncolors),1);
 vec=zeros(bins*ncolors,3);
 
 switch colors(1)
-    case 'w'
-        vec(1,:)=1;
-    case 'r'
-        vec(1,:)=[1 0 0];
-    case 'g'
-        vec(1,:)=[0 1 0];
-    case 'b'
-        vec(1,:)=[0 0 1];
-    case 'c'
-        vec(1,:)=[0 1 1];
-    case 'm'
-        vec(1,:)=[1 0 1];
-    case 'y'
-        vec(1,:)=[1 1 0];
-    case 'k'
+    % grayscale
+    case 'k' % black
         vec(1,:)=[0 0 0];
+    case 'w' % white
+        vec(1,:)=1;
+
+    % primary
+    case 'r' % red
+        vec(1,:)=[1 0 0];
+    case 'g' % green
+        vec(1,:)=[0 1 0];
+    case 'b' % blue
+        vec(1,:)=[0 0 1];
+
+    % secondary
+    case 'y' % yellow
+        vec(1,:)=[1 1 0];
+    case 'c' % cyan
+        vec(1,:)=[0 1 1];
+    case 'm' % magenta
+        vec(1,:)=[1 0 1];
+
+   % tertiary
+    case 'o' % orange
+        vec(1,:)=[1 .5 0];  
+    case 'h' % chartreuse 
+        vec(1,:)=[0.5 1 0];
+    case 'a' % spring green
+        vec(1,:)=[0 1 0.5];
+    case 'z' % azure
+        vec(1,:)=[0 0.5 1];
+    case 'v' % violet
+        vec(1,:)=[0.5 0 1];
+    case 's' % rose
+        vec(1,:)=[1 0 0.5];
 end
 
 
@@ -114,6 +133,30 @@ for i=1:ncolors
          vec(beG:enD,1)=linspace(vec(beG,1),0,bins+1)';
          vec(beG:enD,2)=linspace(vec(beG,2),0,bins+1)';
          vec(beG:enD,3)=linspace(vec(beG,3),0,bins+1)';
+     case 'o'
+         vec(beG:enD,1)=linspace(vec(beG,1),1,bins+1)';
+         vec(beG:enD,2)=linspace(vec(beG,2),0.5,bins+1)';
+         vec(beG:enD,3)=linspace(vec(beG,3),0,bins+1)';
+     case 'h'
+         vec(beG:enD,1)=linspace(vec(beG,1),0.5,bins+1)';
+         vec(beG:enD,2)=linspace(vec(beG,2),1,bins+1)';
+         vec(beG:enD,3)=linspace(vec(beG,3),0,bins+1)';
+     case 'a'
+         vec(beG:enD,1)=linspace(vec(beG,1),0,bins+1)';
+         vec(beG:enD,2)=linspace(vec(beG,2),1,bins+1)';
+         vec(beG:enD,3)=linspace(vec(beG,3),0.5,bins+1)';
+     case 'z'
+         vec(beG:enD,1)=linspace(vec(beG,1),0,bins+1)';
+         vec(beG:enD,2)=linspace(vec(beG,2),0.5,bins+1)';
+         vec(beG:enD,3)=linspace(vec(beG,3),1,bins+1)';
+     case 'v'
+         vec(beG:enD,1)=linspace(vec(beG,1),0.5,bins+1)';
+         vec(beG:enD,2)=linspace(vec(beG,2),0,bins+1)';
+         vec(beG:enD,3)=linspace(vec(beG,3),1,bins+1)';
+     case 's'
+         vec(beG:enD,1)=linspace(vec(beG,1),1,bins+1)';
+         vec(beG:enD,2)=linspace(vec(beG,2),0,bins+1)';
+         vec(beG:enD,3)=linspace(vec(beG,3),0.5,bins+1)';
  end
 end
 cmap=vec();
