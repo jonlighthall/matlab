@@ -25,7 +25,8 @@ function [cmap]=buildcmap(colors,levels,force)
 %  number of levels is less than or equal to the input.
 %
 %  force: force the number of output levels to match the number specified.
-%  Extra levels will be added in a gradient to black.
+%  Extra levels will be added in a gradient to the complementary color of
+%  the final color.
 %
 % Example:
 % [cmap]=buildcmap('wygbr');
@@ -170,9 +171,9 @@ if diff1 && force
     beG=bins*ncolors+1;
     enD=levels;
     bins=diff1;
-         vec(beG:enD,1)=linspace(vec(beG,1),0,bins+1)';
-         vec(beG:enD,2)=linspace(vec(beG,2),0,bins+1)';
-         vec(beG:enD,3)=linspace(vec(beG,3),0,bins+1)';
+    vec(beG:enD,1)=linspace(vec(beG,1),1-vec(beG,1),bins+1)';
+    vec(beG:enD,2)=linspace(vec(beG,2),1-vec(beG,2),bins+1)';
+    vec(beG:enD,3)=linspace(vec(beG,3),1-vec(beG,3),bins+1)';
 end
 
 cmap=vec();
