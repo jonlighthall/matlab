@@ -1,10 +1,16 @@
 close all
 
+%maps=["kw";"bgr";"bcgyr";"bzcaghyor"]; % blue-to-red
+maps=["kw";"bgr";"bcgyrm";"bzcaghyorsmv"]; % dark-to-light
+%maps=["wk";"wbgr";"wbcgyrm";"wbzcaghyorsmv"]; % white-to-rainbow
+%maps=["wk";"wgrbk";"wcgyrmbk";"wcaghyorsmvbk"]; % light-to-dark
+%maps=["wk";"wbgrk";"wbcgyrmk";"wbzcaghyorsmvk"]; % white-to-black
+
 %% test colors
 
 %grayscale
 figure
-colors='kw'; % names of colors to use
+colors=convertStringsToChars(maps(1));
 [cmap]=buildcmap(colors); 
 imshow(im), colorbar
 colormap(cmap) 
@@ -12,7 +18,7 @@ title('grayscale')
 
 % primary
 figure
-colors='bgr'; 
+colors=convertStringsToChars(maps(2));
 [cmap]=buildcmap(colors); 
 imshow(im), colorbar
 colormap(cmap)
@@ -20,7 +26,7 @@ title('primary')
 
 % secondary
 figure
-colors='bcgyrm'; % add cyan, yellow, magenta
+colors=convertStringsToChars(maps(3));
 [cmap]=buildcmap(colors); 
 imshow(im), colorbar
 colormap(cmap) 
@@ -28,7 +34,7 @@ title('secondary')
 
 % tertiary
 figure
-colors='bzcaghyorsmv';
+colors=convertStringsToChars(maps(4));
 [cmap]=buildcmap(colors); 
 imshow(im), colorbar
 colormap(cmap) 
@@ -41,7 +47,7 @@ levels=2; % gradient size between colors
 
 %grayscale
 figure
-colors='kw'; % names of colors to use
+colors=convertStringsToChars(maps(1));
 len=length(colors);
 n_contour = len+(len-1)*levels;
 [cmap]=buildcmap(colors,n_contour); 
@@ -51,7 +57,7 @@ title(sprintf('grayscale, %d levels',n_contour))
 
 % primary
 figure
-colors='bgr'; % number of colors to use
+colors=convertStringsToChars(maps(2));
 len=length(colors);
 n_contour = len+(len-1)*levels;
 [cmap]=buildcmap(colors,n_contour); 
@@ -61,7 +67,7 @@ title(sprintf('primary, %d levels',n_contour))
 
 % secondary
 figure
-colors='bcgyrm'; % add cyan, magenta, black
+colors=convertStringsToChars(maps(3));
 len=length(colors);
 levels=2; % gradient size between colors
 n_contour = len+(len-1)*levels;
@@ -72,7 +78,7 @@ title(sprintf('secondary, %d levels',n_contour))
 
 % tertiary
 figure
-colors='bzcaghyorsmv'; % add cyan, magenta, black
+colors=convertStringsToChars(maps(4));
 len=length(colors);
 n_contour = len+(len-1)*levels;
 [cmap]=buildcmap(colors,n_contour); % add cyan, magenta, black
@@ -87,7 +93,7 @@ n_contour=3;
 
 %grayscale
 figure
-colors='kw'; % names of colors to use
+colors=convertStringsToChars(maps(1));
 [cmap]=buildcmap(colors,n_contour,true); 
 imshow(im), colorbar
 colormap(cmap) 
@@ -95,7 +101,7 @@ title(sprintf('grayscale, %d levels forced',n_contour))
 
 % primary
 figure
-colors='bgr'; % number of colors to use
+colors=convertStringsToChars(maps(2));
 [cmap]=buildcmap(colors,n_contour,true); 
 imshow(im), colorbar
 colormap(cmap) 
@@ -103,7 +109,7 @@ title(sprintf('primary, %d levels forced',n_contour))
 
 % secondary
 figure
-colors='bcgyrm'; % add cyan, magenta, black
+colors=convertStringsToChars(maps(3));
 [cmap]=buildcmap(colors,n_contour,true); 
 imshow(im), colorbar
 colormap(cmap) 
@@ -111,7 +117,7 @@ title(sprintf('secondary, %d levels forced',n_contour))
 
 % tertiary
 figure
-colors='bzcaghyorsmv'; % add cyan, magenta, black
+colors=convertStringsToChars(maps(4));
 [cmap]=buildcmap(colors,n_contour,true); % add cyan, magenta, black
 imshow(im), colorbar
 colormap(cmap) 
@@ -127,7 +133,7 @@ n_contour=14;
 
 %grayscale
 figure
-colors='kw'; % names of colors to use
+colors=convertStringsToChars(maps(1));
 [cmap]=buildcmap(colors,n_contour,true); 
 imshow(im), colorbar
 colormap(cmap) 
@@ -135,7 +141,7 @@ title(sprintf('grayscale, %d levels forced',n_contour))
 
 % primary
 figure
-colors='bgr'; % number of colors to use
+colors=convertStringsToChars(maps(2));
 [cmap]=buildcmap(colors,n_contour,true); 
 imshow(im), colorbar
 colormap(cmap) 
@@ -143,7 +149,7 @@ title(sprintf('primary, %d levels forced',n_contour))
 
 % secondary
 figure
-colors='bcgyrm'; % add cyan, magenta, black
+colors=convertStringsToChars(maps(3));
 [cmap]=buildcmap(colors,n_contour,true); 
 imshow(im), colorbar
 colormap(cmap) 
@@ -151,7 +157,7 @@ title(sprintf('secondary, %d levels forced',n_contour))
 
 % tertiary
 figure
-colors='bzcaghyorsmv'; % add cyan, magenta, black
+colors=convertStringsToChars(maps(4));
 [cmap]=buildcmap(colors,n_contour,true); % add cyan, magenta, black
 imshow(im), colorbar
 colormap(cmap) 
