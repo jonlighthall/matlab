@@ -1,10 +1,16 @@
 close all
+im=imread('cameraman.tif');
 
-%maps=["kw";"bgr";"bcgyr";"bzcaghyor"]; % blue-to-red
-maps=["kw";"bgr";"bcgyrm";"bzcaghyorsmv"]; % dark-to-light
-%maps=["wk";"wbgr";"wbcgyrm";"wbzcaghyorsmv"]; % white-to-rainbow
-%maps=["wk";"wgrbk";"wcgyrmbk";"wcaghyorsmvbk"]; % light-to-dark
-%maps=["wk";"wbgrk";"wbcgyrmk";"wbzcaghyorsmvk"]; % white-to-black
+%% define maps
+%% define maps
+% maps=["kw";"bgr";"cym";"zahosv"]; % subset only
+% maps=["kw";"bgr";"bcgyr";"bzcaghyor"]; % blue-to-red
+maps=["kw";"bgr";"bcgyrm";"bzcaghyorsmv"]; % full color sets
+% maps=["wk";"wgbr";"wygbr";"wyhgaczbvmsr"]; % demo
+% maps=["wk";"wbgr";"wbcgyr";"wvbzcaghyor"]; % white-to-rainbow
+% maps=["kw";"kbrgw";"kbmrygcw";"kbvmsroyhgacw"]; % black-to-white
+% maps=["wk";"wgrbk";"wcgyrmbk";"wcaghyorsmvbk"]; % white-to-black
+% maps=["wk";"wbgrk";"wbcgyrmk";"wbzcaghyorsmvk"]; % b/w sandwhich
 
 %% test colors
 
@@ -124,7 +130,7 @@ colormap(cmap)
 title(sprintf('tertiary, %d levels forced',n_contour))
 
 %% test force
-n_contour=14;
+n_contour=140;
 % The number of levels is forced. A number of levels is chosen to conflict
 % with the "natural" number of levels. For color inputs whose calculated
 % gradient is less than the given number of levels, an additional color
