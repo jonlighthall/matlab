@@ -57,6 +57,11 @@ if ~ischar(colors)
         'type ''help buildcmap'' for more info']);
 end
 
+if force && (length(colors)>levels)
+    colors=colors(1:levels);
+    fprintf('buildcmap: truncating color map to match number of levels\n')
+end
+
 ncolors=length(colors)-1;
 
 
@@ -174,6 +179,7 @@ if diff1 && force
     vec(beG:enD,1)=linspace(vec(beG,1),1-vec(beG,1),bins+1)';
     vec(beG:enD,2)=linspace(vec(beG,2),1-vec(beG,2),bins+1)';
     vec(beG:enD,3)=linspace(vec(beG,3),1-vec(beG,3),bins+1)';
+    fprintf('buildcmap: adding colors to match number of levels\n')
 end
 
 cmap=vec();
