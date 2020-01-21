@@ -17,7 +17,7 @@ This repsoitory contains general programs written in MATLAB.
 | [`geod2rad.m`](geod2rad.m) | geodetic to radius |
 | [`load_constants.m`](load_constants.m) | unit conversions |
 | [`helo.m`](hello.m) | hello world |
-| [`buildcmap.m`](buildcmap.m) | build color map | [`buildcmap.m`](https://www.mathworks.com/matlabcentral/fileexchange/40318-build-custom-colormaps) |
+| [`buildcmap.m`](buildcmap.m) | build color map | [`buildcmap.m`](https://www.mathworks.com/matlabcentral/fileexchange/40318-build-custom-colormaps) | [`test_buildcmap.m`](test_buildcmap.m)
 
 ## Installation
 
