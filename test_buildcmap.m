@@ -1,67 +1,110 @@
 close all
 
-% Example:
-[cmap]=buildcmap('wygbr');
-%try the output cmap:
-im=imread('cameraman.tif');
+%% test colors
+
+%grayscale
+figure
+colors='kw'; % names of colors to use
+[cmap]=buildcmap(colors); 
 imshow(im), colorbar
-colormap(cmap) %will use the output colormap
+colormap(cmap) 
+title('grayscale')
 
 % primary
 figure
-colors='wgbr'; % number of colors to use
+colors='bgr'; 
 [cmap]=buildcmap(colors); 
 imshow(im), colorbar
-colormap(cmap) %will use the output colormap
+colormap(cmap)
+title('primary')
 
 % secondary
 figure
-colors='wygcbmr'; % add cyan, magenta, black
+colors='bcgyrm'; % add cyan, yellow, magenta
 [cmap]=buildcmap(colors); 
 imshow(im), colorbar
-colormap(cmap) %will use the output colormap
+colormap(cmap) 
+title('secondary')
 
 % tertiary
 figure
-colors='wyhgaczbvmsro'; % add cyan, magenta, black
+colors='bzcaghyorsmv';
 [cmap]=buildcmap(colors); 
 imshow(im), colorbar
-colormap(cmap) %will use the output colormap
+colormap(cmap) 
+title('tertiary')
 
+%% test levels
+levels=2; % gradient size between colors
+
+%grayscale
 figure
-colors='kw'; % number of colors to use
-[cmap]=buildcmap(colors); 
+colors='kw'; % names of colors to use
+len=length(colors);
+n_contour = len+(len-1)*levels;
+[cmap]=buildcmap(colors,n_contour); 
 imshow(im), colorbar
-colormap(cmap) %will use the output colormap
+colormap(cmap) 
+title('grayscale')
 
 % primary
 figure
-colors='wbgr'; % number of colors to use
+colors='bgr'; % number of colors to use
 len=length(colors);
-levels=2; % gradient size between colors
 n_contour = len+(len-1)*levels;
-[cmap]=buildcmap(colors,n_contour,true); 
+[cmap]=buildcmap(colors,n_contour); 
 imshow(im), colorbar
-colormap(cmap) %will use the output colormap
+colormap(cmap) 
 
 % secondary
 figure
-colors='wbcgyrm'; % add cyan, magenta, black
+colors='bcgyrm'; % add cyan, magenta, black
 len=length(colors);
 levels=2; % gradient size between colors
 n_contour = len+(len-1)*levels;
-[cmap]=buildcmap(colors,n_contour,true); 
+[cmap]=buildcmap(colors,n_contour); 
 imshow(im), colorbar
-colormap(cmap) %will use the output colormap
+colormap(cmap) 
 
 % tertiary
 figure
-%colors='wroyhgaczbvmsk'; % number of colors to use
-colors='wbzcaghyorsmv'; % add cyan, magenta, black
+colors='bzcaghyorsmv'; % add cyan, magenta, black
 len=length(colors);
 n_contour = len+(len-1)*levels;
+[cmap]=buildcmap(colors,n_contour); % add cyan, magenta, black
+imshow(im), colorbar
+colormap(cmap) 
+
+%% test force
+n_contour=14;
+
+%grayscale
+figure
+colors='kw'; % names of colors to use
+[cmap]=buildcmap(colors,n_contour,true); 
+imshow(im), colorbar
+colormap(cmap) 
+title('grayscale')
+
+% primary
+figure
+colors='bgr'; % number of colors to use
+[cmap]=buildcmap(colors,n_contour,true); 
+imshow(im), colorbar
+colormap(cmap) 
+
+% secondary
+figure
+colors='bcgyrm'; % add cyan, magenta, black
+[cmap]=buildcmap(colors,n_contour,true); 
+imshow(im), colorbar
+colormap(cmap) 
+
+% tertiary
+figure
+colors='bzcaghyorsmv'; % add cyan, magenta, black
 [cmap]=buildcmap(colors,n_contour,true); % add cyan, magenta, black
 imshow(im), colorbar
-colormap(cmap) %will use the output colormap
+colormap(cmap) 
 
 autoArrangeFigures
