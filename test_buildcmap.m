@@ -130,7 +130,7 @@ colormap(cmap)
 title(sprintf('tertiary, %d levels forced',n_contour))
 
 %% test force
-n_contour=140;
+n_contour=14;
 % The number of levels is forced. A number of levels is chosen to conflict
 % with the "natural" number of levels. For color inputs whose calculated
 % gradient is less than the given number of levels, an additional color
