@@ -169,7 +169,7 @@ SSIG=sin(DLAM).*cos(PSI2)./sin(A12);
 % almost exactly 90 degrees)
 dd2=[cos(long).*cos(lat) sin(long).*cos(lat) sin(lat)];
 dd2=sum((diff(dd2).*diff(dd2))')';
-if ( any(abs(dd2-2) < 2*((B-A)/A))^2 )
+if ( any(abs(dd2-2) < (2*((B-A)/A))^2) )
     disp('dist: Warning...point(s) too close to 90 degrees apart');
 end
 bigbrnch=dd2>2;
