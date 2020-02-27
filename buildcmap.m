@@ -96,13 +96,13 @@ switch colors(1)
    % tertiary
     case 'o' % orange
         vec(1,:)=[1 .5 0];  
-    case 'h' % chartreuse 
+    case 'h' % chartreuse/yellow-green
         vec(1,:)=[0.5 1 0];
-    case 'a' % spring green
+    case 'a' % spring green/aquamarine
         vec(1,:)=[0 1 0.5];
     case 'z' % azure
         vec(1,:)=[0 0.5 1];
-    case 'v' % violet
+    case 'v' % violet/purple
         vec(1,:)=[0.5 0 1];
     case 's' % rose
         vec(1,:)=[1 0 0.5];
