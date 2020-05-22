@@ -1,5 +1,5 @@
 function [glat] = geod2geoc(lat,f,do_match,~)
-%GEOD2GEOC Convert geodetic latitude to geocentric latitude.
+%GEOD2GEOC Convert geodetic (map) latitude to geocentric latitude.
 %   Replaces geodeticLatitudeFromGeocentric from the Mapping Toolbox and
 %   geod2geoc from the Aerospace Toolbox.
 %
