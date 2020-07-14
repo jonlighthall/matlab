@@ -34,7 +34,7 @@ end
 %% calculate usable display size
 screen_sz = get(0,'MonitorPositions');
 screen_sz = screen_sz(monitor_id, :);
-task_bar_offset = [-8 -7 13 22]; % left right top bottom
+task_bar_offset = [-8 -7 13 54]; % left right top bottom
 scn_w = screen_sz(3) - task_bar_offset(1) - task_bar_offset(2);
 scn_h = screen_sz(4) - task_bar_offset(3) - task_bar_offset(4);
 scn_w_begin = screen_sz(1) + task_bar_offset(1);
