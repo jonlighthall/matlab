@@ -5,7 +5,7 @@ close all
 %filename='initial_u.txt';
 %filename='short_u.txt';
 filename='mid_u.txt';
-fid=fopen(filename);
+fid=fopen(filename,'r');
 data = fscanf(fid, '%f (%g,%g)',[3,Inf]);
 fclose(fid);
 data=data.';
@@ -34,6 +34,7 @@ phase2=unwrap(phase);
 
 
 %% set ouput grid
+%depthv=depth;
 depthv=1:1:max(depth);
 
 %% interpolate values
@@ -106,3 +107,16 @@ title('imaginary')
 legend('data','mag/phas interp','unwrap','comp interp')
 
 autoArrangeFigures
+
+%% write output
+fout=[filename(1:end-4) '_interp' filename(end-3:end)];
+fid=fopen(fout,'w');
+%fmt='%24.17e'
+fmt='%13.6e';
+formatSpec=['%f\t(' fmt ',' fmt ')\n'];
+for i=1:length(depthv)
+    if ~isnan(vp(i))
+        fprintf(fid,formatSpec,depthv(i),real(vp2(i)),imag(vp2(i)));
+    end
+end
+fclose(fid);
