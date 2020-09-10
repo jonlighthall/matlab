@@ -6,13 +6,17 @@ This repsoitory contains general programs written in MATLAB.
 | program              | description                           | reference | test |
 | -------------------- | ------------------------------------  | ----           | ----              
 | [`autoArrangeFigures.m`](autoArrangeFigures.m) | arrange figures | [`autoArrangeFigures.m`](https://www.mathworks.com/matlabcentral/fileexchange/48480-automatically-arrange-figure-windows) | [`test_autoArrangeFigures.m`](test_autoArrangeFigures.m)
-| [`comb.m`](comb.m) | combination |
-| [`perm.m`](perm.m) | permutation |
 | [`plot_hist.m`](plot_hist.m) | plot histogram |
-| [`tantan.m`](tantan.m) | atan2 |
 | [`load_constants.m`](load_constants.m) | unit conversions |
 | [`hello.m`](hello.m) | hello world |
 | [`buildcmap.m`](buildcmap.m) | build color map | [`buildcmap.m`](https://www.mathworks.com/matlabcentral/fileexchange/40318-build-custom-colormaps) | [`test_buildcmap.m`](test_buildcmap.m)
+
+### Mathematics
+| program              | description                           | reference | test |
+| -------------------- | ------------------------------------  | ----           | ----              
+| [`comb.m`](comb.m) | combination |
+| [`perm.m`](perm.m) | permutation |
+| [`tantan.m`](tantan.m) | atan2 |
 
 ### Geodesy
 | program              | description                           | reference | test |
