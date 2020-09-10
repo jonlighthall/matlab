@@ -3,7 +3,7 @@ This repsoitory contains general programs written in MATLAB.
 
 ## Contents
 ### General Purpose
-| program              | description                           | reference | test |
+| program              | description                           | reference | test script |
 | -------------------- | ------------------------------------  | ----           | ----              
 | [`autoArrangeFigures.m`](autoArrangeFigures.m) | arrange figures | [`autoArrangeFigures.m`](https://www.mathworks.com/matlabcentral/fileexchange/48480-automatically-arrange-figure-windows) | [`test_autoArrangeFigures.m`](test_autoArrangeFigures.m)
 | [`plot_hist.m`](plot_hist.m) | plot histogram |
@@ -12,14 +12,14 @@ This repsoitory contains general programs written in MATLAB.
 | [`buildcmap.m`](buildcmap.m) | build color map | [`buildcmap.m`](https://www.mathworks.com/matlabcentral/fileexchange/40318-build-custom-colormaps) | [`test_buildcmap.m`](test_buildcmap.m)
 
 ### Mathematics
-| program              | description                           | reference | test |
-| -------------------- | ------------------------------------  | ----           | ----              
+| function              | description                           
+| -------------------- | ------------------------------------          
 | [`comb.m`](comb.m) | combination |
 | [`perm.m`](perm.m) | permutation |
 | [`tantan.m`](tantan.m) | atan2 |
 
 ### Geodesy
-| program              | description                           | reference | test |
+| function              | description                           | reference | test script |
 | -------------------- | ------------------------------------  | ----           | ----              
 | [`dist.m`](dist.m) | distance | [`distbear.m`](http://mooring.ucsd.edu/software/matlab/doc/ocean/distbear.html) | [`test_dist.m`](test_dist.m)
 | [`geoc2geod.m`](geoc2geod.m) | geocentric to geodetic | | [`test_geoc2geod.m`](test_geoc2geod.m)
