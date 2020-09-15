@@ -1,58 +1,60 @@
 close all
 clear variables
 
-lat1=0:15:90;
+% NOLA
+lat0=30; 
+lon0=-90;
 
-ln=length(lat1);
-lat2=ones(1,ln);
-lon1=zeros(1,ln);
-lon2=zeros(1,ln);
-
-check_dist(lat1,lon1,lat2,lon2)
-
-clear variables
-
-lat0=30.427528; 
-lon0=-90.091442;
-
+% maximum distance in km
 dist_max=5500;
 arc_max=km2deg(dist_max,'earth');
-%arc_max=179;
 step=10000;
-arc=0:arc_max/(step-1):arc_max;
+% arc=0:arc_max/(step-1):arc_max;
+% if isrow(arc)
+%     arc=arc';
+% end
 
-if isrow(arc)
-    arc=arc';
-end
+% maximum bearing in degrees
 bear_max=90;
+% random
 %bear=rand(step,1)*bear_max;
 bear=rand(step,1)*bear_max*2-bear_max;
+% sequential
 %bear=0:bear_max/(step-1):bear_max;
 %bear=-bear_max:2*bear_max/(step-1):bear_max;
+% mod
+%bear=mod(1:step,360);
+%bear=mod(1:step,bear_max);
 if isrow(bear)
     bear=bear';
 end
 
+% calculate endpoints
 lat=ones(step,1).*lat0;
 lon=ones(step,1).*lon0;
+% arc in degrees
+%[a,b]=reckon(lat,lon,arc,bear);
+% arc in m
+arc=rand(step,1)*dist_max*1000;
+[a,b]=reckon(lat,lon,arc,bear,referenceEllipsoid('wgs84'));
 
-[a,b]=reckon(lat,lon,arc,bear);
+geoplot(a,b,'.')
 
 c=check_dist(lat,lon,a,b);
 
-ymax=dist_max/100/5;
-ymin=-ymax;
-
-plot(c.distance,c.dist,'.')
-xlabel('range (m) from distance() (MATLAB)')
-ylabel('range (m) from dist() (open)')
-grid on
-
-figure
-plot(c.distance,arc,'.')
-xlabel('range (km) from distance() (MATLAB)')
-ylabel('arc distance (degrees)')
-grid on
+% plots
+% ymax=dist_max/100/5;
+% ymin=-ymax;
+% plot(c.distance,c.dist,'.')
+% xlabel('range (m) from distance() (MATLAB)')
+% ylabel('range (m) from dist() (open)')
+% grid on
+% 
+% figure
+% plot(c.distance,arc,'.')
+% xlabel('range (km) from distance() (MATLAB)')
+% ylabel('arc distance (degrees)')
+% grid on
 
 figure
 plot(c.distance,c.diff,'.')
