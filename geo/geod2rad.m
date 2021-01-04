@@ -1,8 +1,8 @@
 function rad = geod2rad(lat,f,req)
-%GEOD2RAD Calcuates geocentric radius as a function of geodetic latitude.
-%   Returns the distance RAD from the center of a spheroid to the elipical
-%   surface with flattening F and equatorial radius REQ at geodetic (map)
-%   latitude LAT, specified in degrees.
+%GEOD2RAD Calcuates geocentric radius as a function of geodetic (map)
+%   latitude. Returns the distance RAD from the center of a spheroid to the
+%   elipical surface with flattening F and equatorial radius REQ at
+%   geodetic (map) latitude LAT, specified in degrees.
 %
 %   RAD = GEOD2RAD(LAT) returns geocentric radius in meters of the earth at
 %   (map) latidue LAT in degrees. The units of RAD are in meters.
