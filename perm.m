@@ -1,12 +1,12 @@
-function [outputArg1,A] = perm(inputArg1,inputArg2)
-%PERM Calculates the permutations of inputArg1 choose inputArg2
+function [outputArg1,A] = perm(n,r)
+%PERM Calculates nPr
 %
 %   See also COMB
-outputArg1 = factorial(inputArg1)/factorial(inputArg1-inputArg2);
+outputArg1 = factorial(n)/factorial(n-r);
 k=1;
 A=zeros(outputArg1,2);
-for i=1:inputArg1
-    for j=1:inputArg1
+for i=1:n
+    for j=1:n
         if(i==j)
             continue
         else
