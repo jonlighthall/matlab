@@ -1,4 +1,5 @@
 %PLOT_HIST
+% requries teh Statistics and Machine Learning Toolbox
 hdata(:,1)=normrnd(50,15,[1,10000]);
 hdata(:,2)=normrnd(30,5,[1,10000]);
 
