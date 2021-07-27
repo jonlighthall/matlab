@@ -1,6 +1,5 @@
 function [phi] = geoc2geod(psi,f,do_match,R)
-%GEOC2GEOD Convert geocentric latitude to geodetic (map) latitude. Only
-%valid for points on the surface of the ellipsoid.
+%GEOC2GEOD Convert geocentric latitude to geodetic (map) latitude. Only valid for points on the surface of the ellipsoid.
 %
 %   Replaces geodeticLatitudeFromGeocentric from the Mapping Toolbox and
 %   geoc2geod from the Aerospace Toolbox. Input for either function are
