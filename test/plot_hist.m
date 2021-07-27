@@ -1,5 +1,9 @@
 %PLOT_HIST
-% requries teh Statistics and Machine Learning Toolbox
+% requries the Statistics and Machine Learning Toolbox
+
+close all
+clear variables
+
 hdata(:,1)=normrnd(50,15,[1,10000]);
 hdata(:,2)=normrnd(30,5,[1,10000]);
 
@@ -51,11 +55,15 @@ mymap=[1 1 1;cmjet];
 colormap(mymap);
 colorbar
 
-load hist.out
-hx=hist(:,1);
-hy=hist(:,2);
-hz=hist(:,3);
-hl=length(hx);
-hh=zeros(length(hx),length(hy));
+autoArrangeFigures
+
+if exist('hist.out','file')==2
+    load hist.out
+    hx=hist(:,1);
+    hy=hist(:,2);
+    hz=hist(:,3);
+    hl=length(hx);
+    hh=zeros(length(hx),length(hy));
+end
 
 A=hist3(mkhist2,'Ctrs',{x y});
