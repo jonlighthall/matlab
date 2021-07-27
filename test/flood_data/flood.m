@@ -42,5 +42,6 @@ for i=1:ln
     figure(2)
     plot(date,flow)
     legend('observations','forecast')
-    
 end
+
+autoArrangeFigures
