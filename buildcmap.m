@@ -41,6 +41,7 @@ function [cmap]=buildcmap(colors,levels,force)
 % Levels added by JCL 17 Jan. 2020
 %--------------------------------------------------------------------------
 
+% argument handling for backwards compatibility
 if nargin<3
     force=false;
     if nargin<2
@@ -63,7 +64,6 @@ if force && (length(colors)>levels)
 end
 
 ncolors=length(colors)-1;
-
 
 bins=max(floor((levels-1)/ncolors),1);
 diff1=(levels-1)-bins*ncolors;
@@ -107,7 +107,6 @@ switch colors(1)
     case 's' % rose
         vec(1,:)=[1 0 0.5];
 end
-
 
 for i=1:ncolors
  beG=(i-1)*bins+1;
