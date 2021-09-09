@@ -12,4 +12,4 @@ load_constants
 
 %% favorites
 % home cd(userpath);
-% repos cd('X:\forjon\matlab')
+% repos cd(macropath)
