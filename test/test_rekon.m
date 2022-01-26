@@ -15,10 +15,10 @@ fprintf('Difference between great circle and rhumb line: %.1f nmi\n',nmsep)
 figure
 mksz=10;
 lnwd=3;
-geoplot(lat,lon,'x','MarkerSize',mksz,'linewidth',lnwd)
+geoplot(lat,lon,'x','MarkerSize',mksz,'linewidth',lnwd,'displayname','start')
 hold on
-geoplot(pt1(1),pt1(2),'o','MarkerSize',mksz,'linewidth',lnwd)
-geoplot(pt2(1),pt2(2),'+','MarkerSize',mksz,'linewidth',lnwd)
+geoplot(pt1(1),pt1(2),'o','MarkerSize',mksz,'linewidth',lnwd,'displayname','great circle')
+geoplot(pt2(1),pt2(2),'+','MarkerSize',mksz,'linewidth',lnwd,'displayname','rhumb line')
 
 E = referenceEllipsoid('wgs84');
 
@@ -28,7 +28,8 @@ load_constants;
 distm=d*nmi2m; % convert to meters
 
 pt3=reckon(lat,lon,distm,az,E);
-geoplot(pt3(1),pt3(2),'s','MarkerSize',mksz,'linewidth',lnwd)
+geoplot(pt3(1),pt3(2),'s','MarkerSize',mksz,'linewidth',lnwd,'displayname','wgs84')
+legend
 
 % When ellipsoid is specified, arc lenth is expressed in the same length
 % units as the semimajor axis of the ellipsoid.
@@ -39,19 +40,19 @@ fprintf('Difference between great circle and wgs84: %.1f nmi\n',nmsep2)
 %% Use dist() to plot geodesic paths
 N=100;
 [~,glat,glon]=dist([lat pt3(1)],[lon pt3(2)],N);
-geoplot(glat,glon)
+geoplot(glat,glon,'r-','displayname','dist() geodesic')
 
 [~,glat,glon]=dist([lat pt1(1)],[lon pt1(2)],N,'sphere');
-geoplot(glat,glon)
+geoplot(glat,glon,'r-','displayname','dist() geodesic')
 
 %% Plot two-point paths
-geoplot([lat pt2(1)],[lon pt2(2)])
-geoplot([lat pt1(1)],[lon pt1(2)],':')
-geoplot([lat pt3(1)],[lon pt3(2)],':')
+geoplot([lat pt2(1)],[lon pt2(2)],'k:','displayname','connect the dots')
+geoplot([lat pt1(1)],[lon pt1(2)],'k:','displayname','connect the dots')
+geoplot([lat pt3(1)],[lon pt3(2)],'k:','displayname','connect the dots')
 
 %% Use track2() to plot geodesics and rhumb lines 
 [latgc,longc] = track2(lat,lon,pt1(1),pt1(2));
-geoplot(latgc,longc,'--')
+geoplot(latgc,longc,'g--','displayname','track2()')
 
 [latgc,longc] = track2('rh',lat,lon,pt2(1),pt2(2));
-geoplot(latgc,longc,'--')
+geoplot(latgc,longc,'g--','displayname','track2()')
