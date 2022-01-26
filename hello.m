@@ -28,6 +28,11 @@ switch nargin
     case 2
         do_beep=true;
 end
+%% beep settings
+S = beep;
+if do_beep
+    beep on
+end
 %% execute loop
 for i=1:loops
     if do_beep
@@ -44,4 +49,6 @@ for i=1:loops
         pause(1)
     end
 end
+%% restore beep setting
+beep(S)
 end
