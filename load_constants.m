@@ -71,4 +71,4 @@ if(lc_do_print)
     fprintf(strcat('dB_yd2m = ',lc_fmt,'\n'),dB_yd2m);
 end
 
-clear lc_do_print lc_dp lc_fmt stack 
+clear lc_do_print lc_dp lc_fmt stack func
