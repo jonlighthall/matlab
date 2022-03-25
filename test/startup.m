@@ -8,7 +8,7 @@ if exist(docpath,'dir')~=7
     return
 else
     fprintf('found\n')
-    macropath = [docpath '\MATLAB\macros'];
+    macropath = fullfile(docpath,'MATLAB','macros');
     fprintf('macropath: %s is... ',macropath)
     if exist(macropath,'dir')~=7
         warning('not found\n');
@@ -17,9 +17,9 @@ else
         fprintf('found\n')
         %% paths
         addpath(macropath)
-        addpath([macropath '\geo'])
-        addpath([macropath '\math'])
-        addpath([macropath '\pi'])
+        addpath(fullfile(macropath,'geo'))
+        addpath(fullfile(macropath,'math'))
+        addpath(fullfile(macropath,'pi'))
         
         %% macros
         load_constants
