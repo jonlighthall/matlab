@@ -1,5 +1,7 @@
+disp(['MATLAB R' version('-release')]);
+
 %% paths
-macropath = 'C:\Users\jlighthall\Documents';
+docpath = 'C:\Users\jlighthall\Documents';
 fprintf('  docpath: %s is... ',docpath)
 if exist(docpath,'dir')~=7
     warning('not found\n');
@@ -16,7 +18,8 @@ else
         %% paths
         addpath(macropath)
         addpath([macropath '\geo'])
-	addpath([macropath '\math'])
+        addpath([macropath '\math'])
+        addpath([macropath '\pi'])
         
         %% macros
         load_constants
