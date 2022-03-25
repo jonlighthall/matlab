@@ -165,6 +165,10 @@ fprintf('omega/360 = %f\n',omega/360)
 
 golden = noon + (omega-6)/360;
 civil = noon + (omega+6)/360;
+
+(sset-golden)*24*60
+(sset-civil)*24*60
+(civil-golden)*24*60
 fprintf('golden = %s\n',datestr(golden))
 fprintf('civil = %s\n',datestr(civil))
 
