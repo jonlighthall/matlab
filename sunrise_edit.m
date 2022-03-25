@@ -145,6 +145,8 @@ else
 end
 
 if nargin < 3 && alt ==0
+    % look up altitude
+    % requires Antenna Toolbox
     mtwash = txsite('Name','Mt Washington','Latitude',lat, ...
         'Longitude',lon);
     z = elevation(mtwash);
