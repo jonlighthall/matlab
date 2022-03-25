@@ -1,6 +1,6 @@
 function [outputArg1,A] = comb(n,r)
-%COMB Calculates nCr, the combinations of "n choose r"
-%   See also perm
+%COMB Calculates the binomial coefficient, or nCr, the combinations of "n choose r"
+%   See also perm nchoosek
 outputArg1 = factorial(n)/(factorial(r)*factorial(n-r));
 k=1;
 A=zeros(outputArg1,2);
