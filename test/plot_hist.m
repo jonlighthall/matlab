@@ -4,9 +4,11 @@
 close all
 clear variables
 
+%% plot random distribution with projections
 hdata(:,1)=normrnd(50,15,[1,10000]);
 hdata(:,2)=normrnd(30,5,[1,10000]);
 
+% define bins
 xnbins=100;
 xmin=0;
 xmax=100;
@@ -20,11 +22,26 @@ figure
 hist3(hdata,'CDataMode','auto','FaceColor','interp','Edges'...
     ,{xmin:xbinwidth:xmax ymin:ybinwidth:ymax},'LineStyle','none')
 view(2)
+
+% mimic ROOT colormap
 cmjet=colormap(jet);
 mymap=[1 1 1;cmjet];
 colormap(mymap);
 colorbar
 
+% x-projection
+figure
+histogram(hdata(:,1))
+histfit(hdata(:,1))
+grid on
+
+% y-projection
+figure
+histogram(hdata(:,2))
+histfit(hdata(:,2))
+grid on
+
+%% plot simple histogram
 figure
 hfill=zeros(3);
 hfill(1,1)=1;
@@ -57,6 +74,7 @@ colorbar
 
 autoArrangeFigures
 
+%% plot data from file
 if exist('hist.out','file')==2
     load hist.out
     hx=hist(:,1);
