@@ -145,12 +145,25 @@ else
 end
 
 if nargin < 3 && alt ==0
-    % look up altitude
-    % requires Antenna Toolbox
-    mtwash = txsite('Name','Mt Washington','Latitude',lat, ...
-        'Longitude',lon);
-    z = elevation(mtwash);
-    alt = z;
+    % look up altitude   
+    fprintf('no altitude specified\n')
+    fprintf('looking up elevation... ')
+    try
+        % requires Antenna Toolbox
+        loc= txsite('Latitude',lat,'Longitude',lon);
+        alt = elevation(loc);
+        disp('from MATLAB')
+    catch
+        try
+            % requires Google API key
+            load api_key.mat            
+            alt = getElevations(lat,lon,'key',API_key);
+            disp('from Google')
+        catch
+            disp('failed')
+            alt=0;
+        end
+    end
     fprintf('altitude is %d m\n',alt)
 end
 
@@ -160,20 +173,31 @@ sset = noon + omega/360;
 srise = noon - omega/360;
 dayl = omega/180;
 
-fprintf('noon = %f\n',noon)
+fprintf('solar noon = %f\n',noon)
 fprintf('solar noon = %s\n',datestr(noon))
 fprintf('omega = %f\n',omega)
 fprintf('omega/360 = %f\n',omega/360)
 
-golden = noon + (omega-6)/360;
+
+% end of civil twilight (definition)
 civil = noon + (omega+6)/360;
 
-(sset-golden)*24*60
-(sset-civil)*24*60
-(civil-golden)*24*60
-fprintf('golden = %s\n',datestr(golden))
-fprintf('civil = %s\n',datestr(civil))
+% time in hours offset from civil twilight
+dt=-1;
 
+% angle above horizon corresponding to specified time offset
+deg_golden=((civil+dt/24)-noon)*360-omega;
+fprintf('%.1f hours before civil twilight end, the sun will be %.1f degrees above the horizon\n',-dt,-deg_golden)
+
+golden = noon + (omega+deg_golden)/360;
+d1=(sset-golden)*24*60;
+d2=(civil-sset)*24*60;
+d3=(civil-golden)*24*60;
+fprintf('golden hour starts %.1f minutes before sunset\n',d1)
+fprintf('civil twilight ends %.1f minutes after sunset\n',d2)
+fprintf('golden hour lasts %.1f minutes\n',d3)
+fprintf('golden hour starts = %s\n',datestr(golden))
+fprintf('civil twilight ends = %s\n',datestr(civil))
 
 switch nargout
     case 0
