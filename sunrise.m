@@ -26,7 +26,7 @@ function varargout=sunrise(varargin)
 %		Day length: 14h 47mn 30s
 %
 %		>> sunrise
-%		Location: -8.65째N, 115.2167째E, 0m
+%		Location: -8.65캮, 115.2167캞, 0m
 %		Sunrise: 16-Oct-2017 05:57:07 +08
 %		Sunset:  16-Oct-2017 18:14:31 +08
 %		Day length: 12h 17mn 24s
@@ -182,7 +182,7 @@ fprintf('civil twilight ends = %s\n',datestr(civil))
 switch nargout
     case 0
         if autoloc
-            fprintf('Location: %g째N, %g째E, %gm\n',lat,lon,alt);
+            fprintf('Location: %g캮, %g캞, %gm\n',lat,lon,alt);
         end
         for n = 1:numel(dte)
             fprintf('Sunrise: %s %+03d\nSunset:  %s %+03d\nDay length: %gh %gmn %gs\n\n', ...
