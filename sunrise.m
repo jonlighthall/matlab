@@ -40,24 +40,6 @@ function varargout=sunrise(varargin)
 %	Reference:
 %	    https://en.wikipedia.org/wiki/Sunrise_equation
 %
-%	Author: Francois Beauducel, IPGP
-%	Created: 2017-10-10 in Paris, France
-%	Updated: 2019-08-18
-
-%	Release history:
-%   [2019-08-18] v1.4
-%       - fix an issue in reverse function for western longitudes
-%	[2019-04-21] v1.3
-%		- adds reverse functions to compute lat/lon from sunrise/sunset
-%		  (thanks to a suggestion by Jaechan Lim)
-%	[2018-10-17] v1.2
-%		- changes to ip-api.com for automatic geolocalisation
-%	[2017-10-16] v1.1
-%		- removes dependency from jsondecode function
-%		- automatic detection of local timezone (needs Java)
-%	[2017-10-10] v1.0
-%		- initial function
-%
 %	Copyright (c) 2019, François Beauducel, covered by BSD License.
 %	All rights reserved.
 %
@@ -84,8 +66,7 @@ function varargout=sunrise(varargin)
 %	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 %	OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-% --- Forward problem: sunrise(lat,lon,alt,tz,dte)
-% get date
+%% get date
 if nargin < 5
     dte = floor(now);
     fprintf('date is %d\n',dte)
@@ -94,7 +75,7 @@ else
     dte = floor(datenum(varargin{5}));
 end
 
-% get time zone
+%% get time zone
 if nargin < 4 || isempty(varargin{4})
     if exist('java.util.Date','class')
         tz = -java.util.Date().getTimezoneOffset/60;
@@ -106,14 +87,14 @@ elseif nargin > 3
     tz = varargin{4};
 end
 
-% get altitude
+%% get altitude
 if nargin < 3
     alt = 0;
 else
     alt = varargin{3};
 end
 
-% try to guess the location...
+%% try to guess the location...
 if nargin < 2 || isempty(varargin{1}) || isempty(varargin{2})
     %api = 'http://freegeoip.net/json/';
     api = 'http://ip-api.com/json';
@@ -144,8 +125,8 @@ else
     autoloc = 0;
 end
 
-if nargin < 3 && alt ==0
-    % look up altitude   
+%% look up altitude   
+if nargin < 3 && alt ==0   
     fprintf('no altitude specified\n')
     fprintf('looking up elevation... ')
     try
@@ -156,7 +137,7 @@ if nargin < 3 && alt ==0
     catch
         try
             % requires Google API key
-            load api_key.mat            
+            load api_key.mat API_key           
             alt = getElevations(lat,lon,'key',API_key);
             disp('from Google')
         catch
@@ -167,7 +148,7 @@ if nargin < 3 && alt ==0
     fprintf('altitude is %d m\n',alt)
 end
 
-% main computation
+%% main computation
 [omega,noon] = omeganoon(lat,lon,alt,tz,dte);
 sset = noon + omega/360;
 srise = noon - omega/360;
@@ -177,7 +158,6 @@ fprintf('solar noon = %f\n',noon)
 fprintf('solar noon = %s\n',datestr(noon))
 fprintf('omega = %f\n',omega)
 fprintf('omega/360 = %f\n',omega/360)
-
 
 % end of civil twilight (definition)
 civil = noon + (omega+6)/360;
@@ -220,7 +200,6 @@ switch nargout
         varargout{3} = noon;
 end
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [omega,noon] = omeganoon(lat,lon,alt,tz,dte)
 % main function that computes daylength and noon time
 % https://en.wikipedia.org/wiki/Sunrise_equation
@@ -257,7 +236,6 @@ omega = real(omega);
 % noon
 noon = Jt + datenum(2000,1,1,12,0,0) - 2451545 + tz/24;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function y=jsd(X,f)
 % very simple interpretation of JSON string
 k = find(~cellfun(@isempty,strfind(X,f)),1);
