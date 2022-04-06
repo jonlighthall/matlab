@@ -68,6 +68,7 @@ function varargout=sunrise(varargin)
 
 %% get date
 if nargin < 5
+    fprintf('no date specifed\nusing today\n')
     dte = floor(now);
     fprintf('date is %d\n',dte)
     fprintf('date is %s\n',datestr(dte))
@@ -77,10 +78,13 @@ end
 
 %% get time zone
 if nargin < 4 || isempty(varargin{4})
+    fprintf('no time zone specifed\nusing...')
     if exist('java.util.Date','class')
         tz = -java.util.Date().getTimezoneOffset/60;
+        fprintf('java\n')
     else
         tz = 0;
+        fprintf('zulu\n')
     end
     fprintf('time zone is UTC%+d\n',tz)
 elseif nargin > 3
@@ -96,6 +100,7 @@ end
 
 %% try to guess the location...
 if nargin < 2 || isempty(varargin{1}) || isempty(varargin{2})
+    fprintf('no location specified\nguessing location based on IP address\n')
     %api = 'http://freegeoip.net/json/';
     api = 'http://ip-api.com/json';
     if exist('webread','file')
@@ -125,27 +130,45 @@ else
     autoloc = 0;
 end
 
-%% look up altitude   
-if nargin < 3 && alt ==0   
+%% look up altitude
+if nargin < 3 && alt ==0
     fprintf('no altitude specified\n')
-    fprintf('looking up elevation... ')
+    fprintf('looking up elevation using... ')
     try
         % requires Antenna Toolbox
         loc= txsite('Latitude',lat,'Longitude',lon);
-        alt = elevation(loc);
-        disp('from MATLAB')
+        % returns ground or building height in meters
+        alt = elevation(loc);        
+        disp('MATLAB txsite')
+        fprintf('elevation is %.1f m\n',alt)
+        try
+            % requires Google API key
+            load api_key.mat API_key
+            alt2 = getElevations(lat,lon,'key',API_key);
+            fprintf('ground elevation is %.1f m\n',alt2)
+            dalt=alt-alt2;
+            if dalt>0
+                fprintf('inferred building height is %.1f m or %.1f ft\n',dalt,dalt/0.3048)
+            else
+                alt_av=mean([alt alt2]);
+                fprintf('average elevation is %.1f m',alt_av)
+                alt = alt_av;
+            end
+        catch
+        end
     catch
         try
             % requires Google API key
-            load api_key.mat API_key           
+            load api_key.mat API_key
             alt = getElevations(lat,lon,'key',API_key);
-            disp('from Google')
+            disp('Google Map API')
+            fprintf('ground elevation is %f m\n',alt)
         catch
             disp('failed')
             alt=0;
         end
     end
-    fprintf('altitude is %d m\n',alt)
+    fprintf('altitude is %.1f m\n',alt)
 end
 
 %% main computation
