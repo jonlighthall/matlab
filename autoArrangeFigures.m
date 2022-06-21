@@ -1,4 +1,11 @@
 function autoArrangeFigures(monitor_id)
+%stack=dbstack;
+%func=stack(1).name;
+%fprintf('function name is %s and stack length is %d\n',func,length(stack))
+% for i=1:length(stack)
+%     fprintf('%d: %s\n',i,stack(i).name)
+% end
+
 %AUTOARRANGEFIGURES Arranges figures in numerical order.
 %
 %   INPUT  : target monitor (optional)
@@ -16,10 +23,6 @@ function autoArrangeFigures(monitor_id)
 %   2017.01.20 use monitor id (Adam Danz's idea)
 %   2014.12.13 leejaejun, Koreatech, Korea Republic, jaejun0201@gmail.com
 
-if nargin < 1
-    monitor_id = 1; % default monitor
-end
-
 %% count and sort figues
 figs=findobj('type','figure');
 n_fig=size(figs,1);
@@ -32,7 +35,16 @@ else
 end
 
 %% calculate usable display size
+set(0,'units','pixels')
 screen_sz = get(0,'MonitorPositions');
+if nargin < 1
+    [n_monitors,~]=size(screen_sz);
+    if n_monitors > 1
+        monitor_id = 2;
+    else
+        monitor_id = 1; % default monitor
+    end
+end
 screen_sz = screen_sz(monitor_id, :);
 task_bar_offset = [-8 -7 13 54]; % left right top bottom
 scn_w = screen_sz(3) - task_bar_offset(1) - task_bar_offset(2);
