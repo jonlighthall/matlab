@@ -10,14 +10,14 @@ function autoArrangeFigures(monitor_id)
 %
 %   INPUT  : target monitor (optional)
 %   OUTPUT : none
-%   
+%
 %   Funciton: The number of figues is used to determing a plotting grid. A
 %   uniform figure size is calculated to fill the given monitor. Figues are
 %   sorted in numerical order.
-%   
+%
 %   Settings:
 %   Set default monitor and system-dependent task bar size.
-%   
+%
 %   Revisions:
 %   2019.04.23 JCL, NRL, USA use calculated grid
 %   2017.01.20 use monitor id (Adam Danz's idea)
@@ -37,20 +37,28 @@ end
 %% calculate usable display size
 set(0,'units','pixels')
 screen_sz = get(0,'MonitorPositions');
+% select target montior
+[n_monitors,~]=size(screen_sz);
 if nargin < 1
-    [n_monitors,~]=size(screen_sz);
+    % define defualt monitor
     if n_monitors > 1
         monitor_id = 2;
     else
-        monitor_id = 1; % default monitor
+        monitor_id = 1;
+    end
+else
+    % check user input
+    if monitor_id>n_monitors
+        monitor_id=n_monitors;
     end
 end
 screen_sz = screen_sz(monitor_id, :);
-task_bar_offset = [-8 -7 13 54]; % left right top bottom
-scn_w = screen_sz(3) - task_bar_offset(1) - task_bar_offset(2);
-scn_h = screen_sz(4) - task_bar_offset(3) - task_bar_offset(4);
-scn_w_begin = screen_sz(1) + task_bar_offset(1);
-scn_h_begin = screen_sz(2) + task_bar_offset(4);
+% set offset for taskbar, etc
+taskbar_offset = [-8 -7 13 54]; % left right top bottom
+scn_w = screen_sz(3) - taskbar_offset(1) - taskbar_offset(2);
+scn_h = screen_sz(4) - taskbar_offset(3) - taskbar_offset(4);
+scn_w_begin = screen_sz(1) + taskbar_offset(1);
+scn_h_begin = screen_sz(2) + taskbar_offset(4);
 
 %% calculate grid size
 nh=floor(sqrt(n_fig));
