@@ -1,6 +1,6 @@
 function autoArrangeFigures(monitor_id)
-%stack=dbstack;
-%func=stack(1).name;
+stack=dbstack;
+func=stack(1).name;
 %fprintf('function name is %s and stack length is %d\n',func,length(stack))
 % for i=1:length(stack)
 %     fprintf('%d: %s\n',i,stack(i).name)
@@ -27,7 +27,7 @@ function autoArrangeFigures(monitor_id)
 figs=findobj('type','figure');
 n_fig=size(figs,1);
 if n_fig <= 0
-    warning('no figures to arrange');
+    fprintf('%s: no figures to arrange\n',func);
     return
 else
     [~,idx]=sort([figs.Number]);
