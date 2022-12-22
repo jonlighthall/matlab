@@ -211,6 +211,20 @@ switch nargout
             fprintf('Sunrise: %s %+03d\nSunset:  %s %+03d\nDay length: %gh %gmn %gs\n\n', ...
                 datestr(srise(n)),tz,datestr(sset(n)),tz, ...
                 floor(24*dayl),floor(mod(24*dayl,1)*60),round(mod(1440*dayl,1)*60));
+
+            % daylight remaining
+            fprintf('now = %s\n',datestr(now))
+            d4=(civil-now)*24*60;
+            d4m=mod(d4,60);
+            d4h=(d4-d4m)/60;
+            fprintf('%.1f hours or %d hours %.1f minutes until civil twilight ends\n',d4/60,d4h,d4m)
+
+            dc=43;
+            d5=d4-dc;
+            d5m=mod(d5,60);
+            d5h=(d5-d5m)/60;
+            fprintf('%.1f hours or %d hours %.1f minutes until you need to leave at %s\n',d5/60,d5h,d5m,datestr(now+d5/60/24))
+
         end
     case 1 % daylength
         varargout{1} = dayl;
