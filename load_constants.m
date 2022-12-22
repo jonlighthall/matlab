@@ -42,9 +42,13 @@ kyd2m=(yd2m*1000); % kiloyards to meters
 dB_m2yd=20*log10(m2yd); % decibels, meter reference to yard reference
 dB_yd2m=20*log10(yd2m); % decibels, yard reference to meter reference
 
-% Note: these units are additive constants. For example, to convert from
-% TL_ref_1m to TL_ref_1yd
-% TL_ref_1m + dB_m2yd = TL_ref_1yd
+% Note: Transmission loss is a negative number. The negative sign is
+% implied. Therefore, these conversion units are additive constants.  For
+% example:
+%
+% to convert from TL_ref_1m to TL_ref_1yd
+% TL_ref_1m + dB_m2yd = TL_ref_1yd (always 0.773 dB more TL)
+% TL_ref_1yd + dB_yd2m = TL_ref_1m (alwasy 0.773 dB less TL)
  
 %% printed output
 if(lc_do_print)
