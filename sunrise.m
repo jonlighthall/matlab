@@ -68,17 +68,17 @@ function varargout=sunrise(varargin)
 
 %% get date
 if nargin < 5
-    fprintf('no date specifed\nusing today\n')
+    fprintf('no date specifed\n\tusing today\n')
     dte = floor(now);
-    fprintf('date is %d\n',dte)
-    fprintf('date is %s\n',datestr(dte))
+    fprintf('\tdate is %d\n',dte)
+    fprintf('\tdate is %s\n',datestr(dte))
 else
     dte = floor(datenum(varargin{5}));
 end
 
 %% get time zone
 if nargin < 4 || isempty(varargin{4})
-    fprintf('no time zone specifed\nusing...')
+    fprintf('no time zone specifed\n\tusing...')
     if exist('java.util.Date','class')
         tz = -java.util.Date().getTimezoneOffset/60;
         fprintf('java\n')
@@ -86,7 +86,7 @@ if nargin < 4 || isempty(varargin{4})
         tz = 0;
         fprintf('zulu\n')
     end
-    fprintf('time zone is UTC%+d\n',tz)
+    fprintf('\ttime zone is UTC%+d\n',tz)
 elseif nargin > 3
     tz = varargin{4};
 end
@@ -100,7 +100,7 @@ end
 
 %% try to guess the location...
 if nargin < 2 || isempty(varargin{1}) || isempty(varargin{2})
-    fprintf('no location specified\nguessing location based on IP address\n')
+    fprintf('no location specified\n\tguessing location based on IP address\n')
     %api = 'http://freegeoip.net/json/';
     api = 'http://ip-api.com/json';
     if exist('webread','file')
@@ -118,7 +118,7 @@ if nargin < 2 || isempty(varargin{1}) || isempty(varargin{2})
         x = textscan(regexprep(s,'[{}"]',''),'%s','delimiter',',');
         lat = jsd(x{1},'lat:');
         lon = jsd(x{1},'lon:');
-        fprintf('location is is %f, %f\n',lat,lon)
+        fprintf('\tlocation is is %f, %f\n',lat,lon)
     end
     if isnan(lat) || isnan(lon)
         error('Cannot determine automatic location... sorry!')
@@ -133,25 +133,25 @@ end
 %% look up altitude
 if nargin < 3 && alt ==0
     fprintf('no altitude specified\n')
-    fprintf('looking up elevation using... ')
+    fprintf('\tlooking up elevation using... ')
     try
         % requires Antenna Toolbox
         loc= txsite('Latitude',lat,'Longitude',lon);
         % returns ground or building height in meters
         alt = elevation(loc);        
         disp('MATLAB txsite')
-        fprintf('elevation is %.1f m\n',alt)
+        fprintf('\televation is %.1f m\n',alt)
         try
             % requires Google API key
             load api_key.mat API_key
             alt2 = getElevations(lat,lon,'key',API_key);
-            fprintf('ground elevation is %.1f m\n',alt2)
+            fprintf('\tground elevation is %.1f m\n',alt2)
             dalt=alt-alt2;
             if dalt>0
-                fprintf('inferred building height is %.1f m or %.1f ft\n',dalt,dalt/0.3048)
+                fprintf('\tinferred building height is %.1f m or %.1f ft\n',dalt,dalt/0.3048)
             else
                 alt_av=mean([alt alt2]);
-                fprintf('average elevation is %.1f m',alt_av)
+                fprintf('\taverage elevation is %.1f m',alt_av)
                 alt = alt_av;
             end
         catch
@@ -162,13 +162,13 @@ if nargin < 3 && alt ==0
             load api_key.mat API_key
             alt = getElevations(lat,lon,'key',API_key);
             disp('Google Map API')
-            fprintf('ground elevation is %f m\n',alt)
+            fprintf('\tground elevation is %f m\n',alt)
         catch
             disp('failed')
             alt=0;
         end
     end
-    fprintf('altitude is %.1f m\n',alt)
+    fprintf('\taltitude is %.1f m\n',alt)
 end
 
 %% main computation
@@ -177,7 +177,7 @@ sset = noon + omega/360;
 srise = noon - omega/360;
 dayl = omega/180;
 
-fprintf('solar noon = %f\n',noon)
+fprintf('\nsolar noon = %f\n',noon)
 fprintf('solar noon = %s\n',datestr(noon))
 fprintf('omega = %f\n',omega)
 fprintf('omega/360 = %f\n',omega/360)
@@ -190,22 +190,22 @@ dt=-1;
 
 % angle above horizon corresponding to specified time offset
 deg_golden=((civil+dt/24)-noon)*360-omega;
-fprintf('%.1f hours before civil twilight end, the sun will be %.1f degrees above the horizon\n',-dt,-deg_golden)
+fprintf('\n%.1f hours before civil twilight end, the sun will be %.1f degrees above the horizon\n',-dt,-deg_golden)
 
 golden = noon + (omega+deg_golden)/360;
 d1=(sset-golden)*24*60;
 d2=(civil-sset)*24*60;
 d3=(civil-golden)*24*60;
-fprintf('golden hour starts %.1f minutes before sunset\n',d1)
+fprintf(' golden hour starts %.1f minutes before sunset\n',d1)
 fprintf('civil twilight ends %.1f minutes after sunset\n',d2)
-fprintf('golden hour lasts %.1f minutes\n',d3)
-fprintf('golden hour starts = %s\n',datestr(golden))
+fprintf('  golden hour lasts %.1f minutes\n',d3)
+fprintf(' golden hour starts = %s\n',datestr(golden))
 fprintf('civil twilight ends = %s\n',datestr(civil))
 
 switch nargout
     case 0
         if autoloc
-            fprintf('Location: %g°N, %g°E, %gm\n',lat,lon,alt);
+            fprintf('\nLocation: %g°N, %g°E, %gm\n',lat,lon,alt);
         end
         for n = 1:numel(dte)
             fprintf('Sunrise: %s %+03d\nSunset:  %s %+03d\nDay length: %gh %gmn %gs\n\n', ...
@@ -219,12 +219,12 @@ switch nargout
             d4h=(d4-d4m)/60;
             fprintf('%.1f hours or %d hours %.1f minutes until civil twilight ends\n',d4/60,d4h,d4m)
 
-            dc=43;
+            % commute
+            dc=37+5; 
             d5=d4-dc;
             d5m=mod(d5,60);
             d5h=(d5-d5m)/60;
             fprintf('%.1f hours or %d hours %.1f minutes until you need to leave at %s\n',d5/60,d5h,d5m,datestr(now+d5/60/24))
-
         end
     case 1 % daylength
         varargout{1} = dayl;
