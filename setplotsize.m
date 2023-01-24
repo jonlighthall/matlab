@@ -22,6 +22,14 @@ yoff=0.65;
 
 set(0,'units','inches')
 dim=get(0,'screensize');
+pos=get(0,'MonitorPositions');
+nmon=size(pos,1);
+
+if nmon > 1
+    tgt_mon=1;
+    xoff=xoff+pos(tgt_mon,1);
+    yoff=yoff+pos(tgt_mon,2);
+end
 
 if (scx*sca+xoff) > dim(3)
     fprintf('adjusting plot size to fit screen\n')
