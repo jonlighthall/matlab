@@ -11,21 +11,22 @@ This repsoitory contains general programs written in MATLAB.
 | [`hello.m`](hello.m) | hello world |
 | [`buildcmap.m`](buildcmap.m) | build color map | [`buildcmap.m`](https://www.mathworks.com/matlabcentral/fileexchange/40318-build-custom-colormaps) | [`test_buildcmap.m`](test_buildcmap.m)
 
-### Mathematics
+### Mathematics : [`math`](math/)
 | function              | description                           
 | -------------------- | ------------------------------------          
-| [`comb.m`](comb.m) | combination |
-| [`perm.m`](perm.m) | permutation |
-| [`tantan.m`](tantan.m) | atan2 |
+| [`comb.m`](math/comb.m) | combination |
+| [`divisor.m`](math/divisor.m) | factorization |
+| [`perm.m`](math/perm.m) | permutation |
+| [`tantan.m`](math/tantan.m) | atan2 |
 
-### Geodesy
+### Geodesy: [`geo`](geo/)
 | function              | description                           | reference | test script |
 | -------------------- | ------------------------------------  | ----           | ----              
-| [`dist.m`](dist.m) | distance | [`distbear.m`](http://mooring.ucsd.edu/software/matlab/doc/ocean/distbear.html) | [`test_dist.m`](test_dist.m)
-| [`geoc2geod.m`](geoc2geod.m) | geocentric to geodetic | | [`test_geoc2geod.m`](test_geoc2geod.m)
-| [`geod2geoc.m`](geod2geoc.m) | geodetic to geocentric |
-| [`geoc2rad.m`](geoc2rad.m) | geocentric to radius |
-| [`geod2rad.m`](geod2rad.m) | geodetic to radius |
+| [`dist.m`](geo/dist.m) | distance | [`distbear.m`](http://mooring.ucsd.edu/software/matlab/doc/ocean/distbear.html) | [`test_dist.m`](test_dist.m)
+| [`geoc2geod.m`](geo/geoc2geod.m) | geocentric to geodetic | | [`test_geoc2geod.m`](test_geoc2geod.m)
+| [`geod2geoc.m`](geo/geod2geoc.m) | geodetic to geocentric |
+| [`geoc2rad.m`](geo/geoc2rad.m) | geocentric to radius |
+| [`geod2rad.m`](geo/geod2rad.m) | geodetic to radius |
 
 ## Installation
 
