@@ -5,19 +5,18 @@ This repsoitory contains general programs written in MATLAB.
 ### General Purpose
 | program              | description                           | reference | test script |
 | -------------------- | ------------------------------------  | ----           | ----              
-| [`autoArrangeFigures.m`](autoArrangeFigures.m) | arrange figures | [`autoArrangeFigures.m`](https://www.mathworks.com/matlabcentral/fileexchange/48480-automatically-arrange-figure-windows) | [`test_autoArrangeFigures.m`](test_autoArrangeFigures.m)
-| [`plot_hist.m`](plot_hist.m) | plot histogram |
 | [`load_constants.m`](load_constants.m) | unit conversions |
 | [`hello.m`](hello.m) | hello world |
-| [`buildcmap.m`](buildcmap.m) | build color map | [`buildcmap.m`](https://www.mathworks.com/matlabcentral/fileexchange/40318-build-custom-colormaps) | [`test_buildcmap.m`](test_buildcmap.m)
+| [`plot_hist.m`](test/plot_hist.m) | plot histogram |
 
-### Mathematics : [`math`](math/)
-| function              | description                           
-| -------------------- | ------------------------------------          
-| [`comb.m`](math/comb.m) | combination |
-| [`divisor.m`](math/divisor.m) | factorization |
-| [`perm.m`](math/perm.m) | permutation |
-| [`tantan.m`](math/tantan.m) | atan2 |
+### Figures : [`figs`](figs/)
+| program              | description                           | reference | test script |
+| -------------------- | ------------------------------------  | ----           | ----              
+| [`autoArrangeFigures.m`](figs/autoArrangeFigures.m) | arrange figures | [`autoArrangeFigures.m`](https://www.mathworks.com/matlabcentral/fileexchange/48480-automatically-arrange-figure-windows) | [`test_autoArrangeFigures.m`](test/test_autoArrangeFigures.m)
+| [`buildcmap.m`](figs/buildcmap.m) | build color map | [`buildcmap.m`](https://www.mathworks.com/matlabcentral/fileexchange/40318-build-custom-colormaps) | [`test_buildcmap.m`](test/test_buildcmap.m)
+| [`nfigs.m`](figs/nfigs.m) | number of figures |
+| [`setplotsize.m`](figs/setplotsize.m) | set plot size |
+| [`timestamp.m`](figs/timestamp.m) | time stamp |
 
 ### Geodesy: [`geo`](geo/)
 | function              | description                           | reference | test script |
@@ -27,6 +26,15 @@ This repsoitory contains general programs written in MATLAB.
 | [`geod2geoc.m`](geo/geod2geoc.m) | geodetic to geocentric |
 | [`geoc2rad.m`](geo/geoc2rad.m) | geocentric to radius |
 | [`geod2rad.m`](geo/geod2rad.m) | geodetic to radius |
+
+### Mathematics : [`math`](math/)
+| function              | description                           
+| -------------------- | ------------------------------------          
+| [`comb.m`](math/comb.m) | combination |
+| [`divisor.m`](math/divisor.m) | factorization |
+| [`perm.m`](math/perm.m) | permutation |
+| [`tantan.m`](math/tantan.m) | atan2 |
+
 
 ## Installation
 
