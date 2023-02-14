@@ -39,6 +39,16 @@ function [cmap]=buildcmap(colors,levels,force)
 % sohrabinia.m@gmail.com
 %
 % Levels added by JCL 17 Jan. 2020
+%
+% Examples:
+%   %primary
+%   [cmap]=buildcmap('rgb',3);
+%   % secondary
+%   [cmap]=buildcmap('rygcbm',6);
+%   % tertiary
+%   [cmap]=buildcmap('royhgaczbvms',12);
+%
+
 %--------------------------------------------------------------------------
 
 % argument handling for backwards compatibility
