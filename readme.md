@@ -1,4 +1,6 @@
 # Matlab
+https://github.com/jonlighthall/matlab
+
 This repsoitory contains general programs written in MATLAB.
 
 ## Contents
@@ -21,8 +23,8 @@ This repsoitory contains general programs written in MATLAB.
 ### Geodesy: [`geo`](geo/)
 | function              | description                           | reference | test script |
 | -------------------- | ------------------------------------  | ----           | ----              
-| [`dist.m`](geo/dist.m) | distance | [`distbear.m`](http://mooring.ucsd.edu/software/matlab/doc/ocean/distbear.html) | [`test_dist.m`](test_dist.m)
-| [`geoc2geod.m`](geo/geoc2geod.m) | geocentric to geodetic | | [`test_geoc2geod.m`](test_geoc2geod.m)
+| [`dist.m`](geo/dist.m) | distance | [`distbear.m`](http://mooring.ucsd.edu/software/matlab/doc/ocean/distbear.html) | [`test_dist.m`](geo/test_dist.m)
+| [`geoc2geod.m`](geo/geoc2geod.m) | geocentric to geodetic | | [`test_geoc2geod.m`](geo/test_geoc2geod.m)
 | [`geod2geoc.m`](geo/geod2geoc.m) | geodetic to geocentric |
 | [`geoc2rad.m`](geo/geoc2rad.m) | geocentric to radius |
 | [`geod2rad.m`](geo/geod2rad.m) | geodetic to radius |
