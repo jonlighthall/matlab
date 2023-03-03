@@ -1,7 +1,7 @@
 # Matlab
 https://github.com/jonlighthall/matlab
 
-This repsoitory contains general programs written in MATLAB.
+This repsoitory contains general purpose programs written in MATLAB.
 
 ## Contents
 ### General Purpose
