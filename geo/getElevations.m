@@ -5,7 +5,7 @@ function [elevation, resolution] = getElevations(latitude, longitude, varargin)
 %   elevation for latitude and longitude arrays.
 %
 %   [elevation, resolution] = getElevations(latitude, longitude, ...
-%     'key', 'AIzaSyCuN8tjAVEaXorgNjS1tDiVC-oc0QBJoYc' );
+%     'key', '--enter your Google Maps API key here--' );
 %   is an example of a call passing additional attributes to Google Maps 
 %   API webservice, and capturing also the resolution of the data. 
 %   See https://developers.google.com/maps/documentation/elevation/
