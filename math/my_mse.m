@@ -1,11 +1,12 @@
-function [outputArg1] = my_mse(A,B,w,do_print)
+function [my_wt_mse] = my_mse(A,B,w,do_print)
 %MY_MSE Weighted Mean-Squared Error.
 %   Detailed explanation goes here
 %
 %   See also IMMSE
 
-%% parse input arguments
+%   Mar 2023 JCL
 
+%% parse input arguments
 % default print setting
 if nargin<4
     do_print=false;
@@ -37,20 +38,21 @@ else
     end
 end
 
-%% calculate 
-Sum_weight=sum(w(:));
-if do_print
-    fprintf('The sum of weights = %f\n',Sum_weight);
-    fprintf('The average element weight is %f\n',Sum_weight/num_el)
-end
-
+%% calculate weighted squared error
 my_error=A-B;
 % normally, the MATLAB function sumsqr() could be use, but each squared
 % error must be individually weighted
 my_sqerr=my_error.^2;
-my_weighted_sqerr=my_sqerr.*w;
-my_sum_wt_sqerr=sum(my_weighted_sqerr,'all');
-my_wt_mse=my_sum_wt_sqerr/Sum_weight;
+my_weighted_sq_err=my_sqerr.*w;
+my_weighted_sumsq_err=sum(my_weighted_sq_err,'all');
+
+%% calculate mean weighted squared error
+sum_weight=sum(w(:));
+if do_print
+    fprintf('The sum of weights = %f\n',sum_weight);
+    fprintf('The average element weight is %f\n',sum_weight/num_el)
+end
+my_wt_mse=my_weighted_sumsq_err/sum_weight;
 my_wt_rmse=sqrt(my_wt_mse);
 
 mse=immse(A,B);
@@ -63,5 +65,4 @@ if do_print
     fprintf('  weighted RMSE = %7.4f\n',my_wt_rmse)
     fprintf('=========================\n')
 end
-outputArg1=my_wt_mse;
 end
