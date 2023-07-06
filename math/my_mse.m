@@ -64,13 +64,4 @@ if do_print
     fprintf('=========================\n')
 end
 outputArg1=my_wt_mse;
-
-%outputArg1=sum( (A(:)-B(:)).^2  ) /Sw;
-
-%outputArg1=(sum( abs(A(:)-B(:)).^2  * w ) ) /Sw;
-
-%outputArg1=sum((A(:)-B(:)).^2)/numel(A);
-%outputArg1=(norm(A(:)-B(:),2).^2)/numel(A); % as defined in immse
-
-%outputArg1=(norm((A(:)-B(:)).*w(:),2).^2) / Sw;
 end
