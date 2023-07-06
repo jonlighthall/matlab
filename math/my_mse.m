@@ -44,12 +44,14 @@ if do_print
     fprintf('The average element weight is %f\n',Sum_weight/num_el)
 end
 
-my_error_mat=A-B;
-my_sqerr_mat=my_error_mat.^2;
-my_weighted_sqerr_mat=my_sqerr_mat.*w;
-my_sum_wt_sqerr_mat=sum(my_weighted_sqerr_mat,'all');
-my_wt_mse_mat=my_sum_wt_sqerr_mat/Sum_weight;
-my_wt_rmse_mat=sqrt(my_wt_mse_mat);
+my_error=A-B;
+% normally, the MATLAB function sumsqr() could be use, but each squared
+% error must be individually weighted
+my_sqerr=my_error.^2;
+my_weighted_sqerr=my_sqerr.*w;
+my_sum_wt_sqerr=sum(my_weighted_sqerr,'all');
+my_wt_mse=my_sum_wt_sqerr/Sum_weight;
+my_wt_rmse=sqrt(my_wt_mse);
 
 mse=immse(A,B);
 if do_print
@@ -57,11 +59,11 @@ if do_print
     fprintf('unweighted  MSE = %7.4f\n',mse)
     fprintf('unweighted RMSE = %7.4f\n',sqrt(mse))
     fprintf('-------------------------\n')
-    fprintf('  weighted  MSE = %7.4f\n',my_wt_mse_mat)
-    fprintf('  weighted RMSE = %7.4f\n',my_wt_rmse_mat)
+    fprintf('  weighted  MSE = %7.4f\n',my_wt_mse)
+    fprintf('  weighted RMSE = %7.4f\n',my_wt_rmse)
     fprintf('=========================\n')
 end
-outputArg1=my_wt_mse_mat;
+outputArg1=my_wt_mse;
 
 %outputArg1=sum( (A(:)-B(:)).^2  ) /Sw;
 
