@@ -45,30 +45,11 @@ if do_print
 end
 
 my_error_mat=A-B;
-my_error_vec=A(:)-B(:);
-
 my_sqerr_mat=my_error_mat.^2;
-my_sqerr_vec=my_error_vec.^2;
-
 my_weighted_sqerr_mat=my_sqerr_mat.*w;
-my_weighted_sqerr_vec=my_sqerr_vec.*w(:);
-
 my_sum_wt_sqerr_mat=sum(my_weighted_sqerr_mat,'all');
-my_sum_wt_sqerr_vec=sum(my_weighted_sqerr_vec);
-
 my_wt_mse_mat=my_sum_wt_sqerr_mat/Sum_weight;
-my_wt_mse_vec=my_sum_wt_sqerr_vec/Sum_weight;
-
 my_wt_rmse_mat=sqrt(my_wt_mse_mat);
-my_wt_rmse_vec=sqrt(my_wt_mse_vec);
-
-if my_wt_rmse_mat==my_wt_rmse_vec
-    if do_print
-        fprintf('vector and matrix methods agree\n')
-    end
-else
-    warning('vector and matrix methods DO NOT agree\n')
-end
 
 mse=immse(A,B);
 if do_print
