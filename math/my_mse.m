@@ -1,22 +1,27 @@
 function [outputArg1] = my_mse(A,B,w,do_print)
-%UNTITLED Weighted Mean-Squared Error.
+%MY_MSE Weighted Mean-Squared Error.
 %   Detailed explanation goes here
 %
 %   See also IMMSE
+
+%% parse input arguments
+
+% default print setting
 if nargin<4
     do_print=false;
 end
 
+% check input size
 if isequal(size(A),size(B))
     num_el=numel(A);
     if do_print
-        fprintf('each array has %d number of elements: %d x %d \n',num_el,size(A))
+        fprintf('each vector has %d number of elements: %d x %d \n',num_el,size(A))
     end
 else
-
     error(message('images:validate:unequalSizeMatrices','A','B'));
 end
 
+% defaults to standard, un-weighted MSE if no weight is given
 if nargin < 3
     w=ones(size(A));
     if do_print
@@ -26,10 +31,13 @@ else
     if do_print
         fprintf('using user-specified weighting\n')
     end
+    % check input size
     if ~isequal(size(A),size(w))
         error(message('images:validate:unequalSizeMatrices','A','w'));
     end
 end
+
+%% calculate 
 Sum_weight=sum(w(:));
 if do_print
     fprintf('The sum of weights = %f\n',Sum_weight);
@@ -37,29 +45,29 @@ if do_print
 end
 
 my_error_mat=A-B;
-my_error_arr=A(:)-B(:);
+my_error_vec=A(:)-B(:);
 
 my_sqerr_mat=my_error_mat.^2;
-my_sqerr_arr=my_error_arr.^2;
+my_sqerr_vec=my_error_vec.^2;
 
 my_weighted_sqerr_mat=my_sqerr_mat.*w;
-my_weighted_sqerr_arr=my_sqerr_arr.*w(:);
+my_weighted_sqerr_vec=my_sqerr_vec.*w(:);
 
 my_sum_wt_sqerr_mat=sum(my_weighted_sqerr_mat,'all');
-my_sum_wt_sqerr_arr=sum(my_weighted_sqerr_arr);
+my_sum_wt_sqerr_vec=sum(my_weighted_sqerr_vec);
 
 my_wt_mse_mat=my_sum_wt_sqerr_mat/Sum_weight;
-my_wt_mse_arr=my_sum_wt_sqerr_arr/Sum_weight;
+my_wt_mse_vec=my_sum_wt_sqerr_vec/Sum_weight;
 
 my_wt_rmse_mat=sqrt(my_wt_mse_mat);
-my_wt_rmse_arr=sqrt(my_wt_mse_arr);
+my_wt_rmse_vec=sqrt(my_wt_mse_vec);
 
-if my_wt_rmse_mat==my_wt_rmse_arr
+if my_wt_rmse_mat==my_wt_rmse_vec
     if do_print
-        fprintf('array and matrix methods agree\n')
+        fprintf('vector and matrix methods agree\n')
     end
 else
-    warning('array and matrix methods DO NOT agree\n')
+    warning('vector and matrix methods DO NOT agree\n')
 end
 
 mse=immse(A,B);
