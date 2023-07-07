@@ -16,7 +16,7 @@ end
 if isequal(size(A),size(B))
     num_el=numel(A);
     if do_print
-        fprintf('each vector has %d number of elements: %d x %d \n',num_el,size(A))
+        fprintf('each input has %d number of elements: %d x %d \n',num_el,size(A))
     end
 else
     error(message('images:validate:unequalSizeMatrices','A','B'));
