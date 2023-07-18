@@ -179,6 +179,17 @@ dayl = omega/180;
 
 fprintf('\nsolar noon = %f\n',noon)
 fprintf('solar noon = %s\n',datestr(noon))
+
+middayhour=str2num(datestr(noon,'HH'));
+fprintf('solar noon near %d o''clock. ',middayhour);
+switch middayhour
+    case 12
+        fprintf('it''s probably ST\n')
+    case 13
+        fprintf('it''s probably DST\n')
+    otherwise
+        fprintf('huh?')
+end
 fprintf('omega = %f\n',omega)
 fprintf('omega/360 = %f\n',omega/360)
 
@@ -208,7 +219,7 @@ switch nargout
             fprintf('\nLocation: %g°N, %g°E, %gm\n',lat,lon,alt);
         end
         for n = 1:numel(dte)
-            fprintf('Sunrise: %s %+03d\nSunset:  %s %+03d\nDay length: %gh %gmn %gs\n\n', ...
+            fprintf('Sunrise: %s %+03d\nSunset:  %s %+03d\nDay length: %ghr %gmin %gs\n\n', ...
                 datestr(srise(n)),tz,datestr(sset(n)),tz, ...
                 floor(24*dayl),floor(mod(24*dayl,1)*60),round(mod(1440*dayl,1)*60));
 
