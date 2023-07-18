@@ -20,7 +20,7 @@ This repsoitory contains general purpose programs written in MATLAB.
 | [`setplotsize.m`](figs/setplotsize.m) | set plot size |
 | [`timestamp.m`](figs/timestamp.m) | time stamp |
 
-### Geodesy: [`geo`](geo/)
+### Geodesy : [`geo`](geo/)
 | function              | description                           | reference | test script |
 | -------------------- | ------------------------------------  | ----           | ----              
 | [`dist.m`](geo/dist.m) | distance | [`distbear.m`](http://mooring.ucsd.edu/software/matlab/doc/ocean/distbear.html) | [`test_dist.m`](geo/test_dist.m)
@@ -36,6 +36,11 @@ This repsoitory contains general purpose programs written in MATLAB.
 | [`divisor.m`](math/divisor.m) | factorization |
 | [`perm.m`](math/perm.m) | permutation |
 | [`tantan.m`](math/tantan.m) | atan2 |
+
+### Transmission Loss : [`tl`](lt/)
+| function              | description                           
+| -------------------- | ------------------------------------          
+| [`TL_units.m`](tl/TL_units.m) | compare TL referenced to 1yd & 1m |
 
 
 ## Installation
