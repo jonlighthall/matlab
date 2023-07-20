@@ -13,7 +13,7 @@ dp=ceil(log10(N))+1;
 dp=max([dp 4]);
 
 fmt=sprintf('%%%ds %%%ds %%%ds\\n',dp,dp,dp+3);
-fprintf(fmt,'rad','rank','value')
+fprintf(fmt,'rad','rank','value');
 
 fmt=sprintf('%%%dd %%%dd %%%d.%df\\n',dp,dp,dp+3,dp+1);
 for i=1:length(show)    
