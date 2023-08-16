@@ -62,3 +62,8 @@ Check out the folder from the repository with one of the following commands.
 >`git clone https://github.com/jonlighthall/matlab` (Git HTTPS)
 
 >`git clone git@github.com:jonlighthall/matlab.git` (Git SSH)
+
+### Configuration
+To ignore changes to .gitignore, use the following command
+
+>`git update-index --skip-worktree .gitignore`
