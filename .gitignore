@@ -1,0 +1,10 @@
+# MATLAB
+**/*.asv
+**/*license.lic*
+
+# Emacs
+*~
+\#*#
+
+# Git 
+*.~*~
