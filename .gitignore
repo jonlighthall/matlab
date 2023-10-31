@@ -11,3 +11,8 @@
 
 # directories
 **/
+!figs/
+!geo/
+!math/
+!pi/
+!tl/
