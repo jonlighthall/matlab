@@ -1,4 +1,4 @@
-function [my_wt_mse] = my_mse(A,B,w,do_print)
+function [my_wt_mse,my_weighted_rt_sq_err] = my_mse(A,B,w,do_print)
 %MY_MSE Weighted Mean-Squared Error.
 %   Detailed explanation goes here
 %
@@ -44,6 +44,8 @@ my_error=A-B;
 % error must be individually weighted
 my_sqerr=my_error.^2;
 my_weighted_sq_err=my_sqerr.*w;
+my_weighted_rt_sq_err=sqrt(my_sqerr).*w;
+
 my_weighted_sumsq_err=sum(my_weighted_sq_err,'all');
 
 %% calculate mean weighted squared error
