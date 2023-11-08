@@ -7,11 +7,15 @@ au=149597870700;
 % solar radius in m
 solrad=6.95700e8;
 
-% measured solar radius from Mercury transit
-sunrad=696342e3;
+% measured solar radius from Mercury transits
+% https://arxiv.org/abs/1203.4898
+% 696,342 ± 65km
+sunrad=696342e3; 
 
 % compare to definition
-fprintf('The sun''s radius is %.8f au\n',solrad/au)
+fprintf('One solar radius is %.8f au\n',solrad/au)
+fprintf('The sun''s radius is %.8f au\n',sunrad/au)
+fprintf('The sun''s radius is %.8f RN\n',sunrad/solrad)
 
 % solar diameter in m
 soldia=2*solrad;
