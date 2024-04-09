@@ -58,5 +58,7 @@ if (scy*sca+yoff) > dim(4)
     fprintf(' to %f\n',sca)
 end
 
+fprintf('dimensions are %f x %f with a scale factor of %f\n',scx,scy,sca)
+
 set(gcf,'Position',[xoff,yoff,scx*sca,scy*sca]);
 end
