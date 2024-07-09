@@ -223,19 +223,51 @@ switch nargout
                 datestr(srise(n)),tz,datestr(sset(n)),tz, ...
                 floor(24*dayl),floor(mod(24*dayl,1)*60),round(mod(1440*dayl,1)*60));
 
-            % daylight remaining
+            % commute
+            com_time=37;
+            warn_time=5;
+            dc=com_time+warn_time;
+
             fprintf('now = %s\n',datestr(now))
+            
+            % golden hour
+            fprintf('golden hour\n');
+            dt_golden=(golden-now)*24*60;
+            dt_golden_min=mod(dt_golden,60);
+            dt_golden_hr=(dt_golden-dt_golden_min)/60;
+            fprintf('   %.1f hours or %d hours %.1f minutes until golden hour starts\n',dt_golden/60,dt_golden_hr,dt_golden_min)
+
+            % commute
+            dt_golden_comm=dt_golden-dc;
+            dt_golden_comm_min=mod(dt_golden_comm,60);
+            dt_golden_comm_hr=(dt_golden_comm-dt_golden_comm_min)/60;
+            fprintf('   %.1f hours or %d hours %.1f minutes until you need to leave at %s\n',dt_golden_comm/60,dt_golden_comm_hr,dt_golden_comm_min,datestr(now+dt_golden_comm/60/24))         
+            
+            % sunset
+            fprintf('sunset\n');
+            ds=(sset-now)*24*60;
+            dsm=mod(ds,60);
+            dsh=(ds-dsm)/60;
+            fprintf('   %.1f hours or %d hours %.1f minutes until sunset\n',ds/60,dsh,dsm)
+
+            % commute
+            dsc=ds-dc;
+            dscm=mod(dsc,60);
+            dsch=(dsc-dscm)/60;
+            fprintf('   %.1f hours or %d hours %.1f minutes until you need to leave at %s\n',dsc/60,dsch,dscm,datestr(now+dsc/60/24))
+            
+            % daylight remaining
+            fprintf('civil twilight\n');
             d4=(civil-now)*24*60;
             d4m=mod(d4,60);
             d4h=(d4-d4m)/60;
-            fprintf('%.1f hours or %d hours %.1f minutes until civil twilight ends\n',d4/60,d4h,d4m)
+            fprintf('   %.1f hours or %d hours %.1f minutes until civil twilight ends\n',d4/60,d4h,d4m)
 
             % commute
-            dc=37+5; 
             d5=d4-dc;
             d5m=mod(d5,60);
             d5h=(d5-d5m)/60;
-            fprintf('%.1f hours or %d hours %.1f minutes until you need to leave at %s\n',d5/60,d5h,d5m,datestr(now+d5/60/24))
+            fprintf('   %.1f hours or %d hours %.1f minutes until you need to leave at %s\n',d5/60,d5h,d5m,datestr(now+d5/60/24))
         end
     case 1 % daylength
         varargout{1} = dayl;
