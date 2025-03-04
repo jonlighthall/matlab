@@ -93,7 +93,7 @@ elseif strcmp(spheroid(1:3),'wgs')
     % on 9/11/88, Peter Worcester gave me the constants for the WGS84
     % spheroid
     A = 6378137.;
-	%  F = (A-B)/A (flattening)
+    %  F = (A-B)/A (flattening)
     F = 1./298.257223563;
     B = A*(1-F);
 else
