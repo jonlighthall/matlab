@@ -140,12 +140,13 @@ if nargin < 3 && alt ==0
         % returns ground or building height in meters
         alt = elevation(loc);        
         disp('MATLAB txsite')
-        fprintf('\televation is %.1f m\n',alt)
+        fprintf('\t\televation is %.1f m\n',alt)
         try
             % requires Google API key
             load api_key.mat API_key
+            fprintf('\tGoogle API\n')
             alt2 = getElevations(lat,lon,'key',API_key);
-            fprintf('\tground elevation is %.1f m\n',alt2)
+            fprintf('\t\tground elevation is %.1f m\n',alt2)
             dalt=alt-alt2;
             if dalt>0
                 fprintf('\tinferred building height is %.1f m or %.1f ft\n',dalt,dalt/0.3048)
@@ -184,9 +185,9 @@ middayhour=str2num(datestr(noon,'HH'));
 fprintf('solar noon near %d o''clock. ',middayhour);
 switch middayhour
     case 12
-        fprintf('it''s probably ST\n')
+        fprintf('it''s probably Standard Time (ST)\n')
     case 13
-        fprintf('it''s probably DST\n')
+        fprintf('it''s probably Daylight Saving Time (DST)\n')
     otherwise
         fprintf('huh?')
 end
@@ -201,7 +202,7 @@ dt=-1;
 
 % angle above horizon corresponding to specified time offset
 deg_golden=((civil+dt/24)-noon)*360-omega;
-fprintf('\n%.1f hours before civil twilight end, the sun will be %.1f degrees above the horizon\n',-dt,-deg_golden)
+fprintf('\n%.1f hours before civil twilight ends, the sun will be %.1f degrees above the horizon\n',-dt,-deg_golden)
 
 golden = noon + (omega+deg_golden)/360;
 d1=(sset-golden)*24*60;
