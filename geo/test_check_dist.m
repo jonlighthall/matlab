@@ -48,5 +48,6 @@ figure
 plot(bear,c.diff./c.distance*100,'.')
 xlabel('bearing (deg)')
 ylabel('percent difference')
-autoArrangeFigures
 grid on
+
+autoArrangeFigures(1)
