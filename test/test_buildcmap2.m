@@ -1,4 +1,4 @@
-close all
+%close all
 im=imread('cameraman.tif');
 
 mx_dim=128;
@@ -28,13 +28,19 @@ ly=size(2);
 n_contour=128;
 force=false;
 
+if force
+    tlab=sprintf( 'forced');
+else
+    tlab=sprintf('');
+end
+
 %grayscale
 figure
 colors=convertStringsToChars(maps(1));
 [cmap]=buildcmap(colors,n_contour,force); 
 imshow(im), colorbar
 colormap(cmap) 
-title(sprintf('grayscale, %d levels forced',length(cmap)))
+title(sprintf('grayscale, %d levels%s',length(cmap),tlab))
 
 % primary
 figure
@@ -42,7 +48,7 @@ colors=convertStringsToChars(maps(2));
 [cmap]=buildcmap(colors,n_contour,force); 
 imshow(im), colorbar
 colormap(cmap) 
-title(sprintf('primary, %d levels forced',length(cmap)))
+title(sprintf('primary, %d levels%s',length(cmap),tlab))
 
 % secondary
 figure
@@ -50,7 +56,7 @@ colors=convertStringsToChars(maps(3));
 [cmap]=buildcmap(colors,n_contour,force); 
 imshow(im), colorbar
 colormap(cmap) 
-title(sprintf('secondary, %d levels forced',length(cmap)))
+title(sprintf('secondary, %d levels%s',length(cmap),tlab))
 
 % tertiary
 figure
@@ -58,6 +64,6 @@ colors=convertStringsToChars(maps(4));
 [cmap]=buildcmap(colors,n_contour,force); % add cyan, magenta, black
 imshow(im), colorbar
 colormap(cmap) 
-title(sprintf('tertiary, %d levels forced',length(cmap)))
+title(sprintf('tertiary, %d levels%s',length(cmap),tlab))
 
-autoArrangeFigures
+autoArrangeFigures(1)
