@@ -15,28 +15,42 @@ else
 end
 
 %% multiplicitive constants
-% equivalence definitions
-global ft2m
-ft2m=0.3048; % feet to meters (exact)
-global nmi2m
-nmi2m=1852; % nautical miles to meters (exact)
-global mi2m
-%mi2m=1609.344; % statute miles to meters (exact)
-mi2m=ft2m*5280; % statute miles to meters
+% equivalence definitions (exact)
+ft2m=0.3048;    % feet to meters           = 0.3048
+yd2m=ft2m*3;    % yards to meters          = 0.914
+kyd2m=(yd2m*1000); % kiloyards to meters   = 914.4
+mi2m=ft2m*5280; % statute miles to meters  = 1609.344
+nmi2m=1852;     % nautical miles to meters = 1852
+
+mi2km = mi2m/1000; % statute miles to km   = 1.609344
+nmi2km=nmi2m/1000; % nautical miles to km  = 1.852
+
+% inverse relations (approximate)
+m2ft=1/ft2m;   % meters to feet            ~ 3.2808
+m2yd=1/yd2m;   % meters to yards           ~ 1.0936
+m2kyd=1/kyd2m; % meters to kiloyards       ~ 0.0011
+m2mi=1/mi2m;   % meters to statute miles   ~ 6.2137e-4
+m2nmi=1/nmi2m; % meters to nautical miles  ~ 5.3996e-4
+
+% bastardized distance conversion
+ft2nmi=ft2m*m2nmi; % feet to nautical mile ~ 1.6458e-4
+nmi2ft=nmi2m*m2ft; % nautical mile to feet ~ 6.0761e+3
 
 % functional definitions
 % speed
-m2nmi=1/nmi2m; % meters to nautical miles
-kt2ms=nmi2m/(60*60); % knots (nautical miles per hour) to meters-per-second
-ms2kt=1/kt2ms; % meters-per-second to knots
-kt2mph=nmi2m/mi2m; % knots to miles-per-hour
+kt2ms=nmi2m/(60*60); % knots (nautical miles per hour) to meters-per-second ~ 0.5144
+mph2ms=mi2m/3600; % miles-per-hour to meters-per-second = 0.44704
 
-% distance
-nmi2km=nmi2m/1000; % nautical miles to kilometers
-m2ft=1/ft2m; % meters to feet
-m2yd=m2ft/3; % meters to yards
-yd2m=1/m2yd; % yards to meters
-kyd2m=(yd2m*1000); % kiloyards to meters
+% inverse
+ms2kt=1/kt2ms; % meters-per-second to knots ~ 1.9438
+ms2mph=1/mph2ms; % meters-per-second to miles-per-hour ~ 2.2369
+
+% bastard
+kt2mph=nmi2m/mi2m; % knots to miles-per-hour ~ 1.1508
+kph2mph=m2mi/1000; % kilometers-per-hour to miles-per-hour ~ 0.6214
+
+mph2kt=1/kt2mph;
+mph2kph=1/kph2mph;
 
 %% additive constants
 dB_m2yd=20*log10(m2yd); % decibels, meter reference to yard reference
@@ -49,7 +63,7 @@ dB_yd2m=20*log10(yd2m); % decibels, yard reference to meter reference
 % to convert from TL_ref_1m to TL_ref_1yd
 % TL_ref_1m + dB_m2yd = TL_ref_1yd (always 0.773 dB more TL)
 % TL_ref_1yd + dB_yd2m = TL_ref_1m (alwasy 0.773 dB less TL)
- 
+
 %% printed output
 if(lc_do_print)
     fprintf('%s: ',func);
