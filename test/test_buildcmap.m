@@ -169,4 +169,4 @@ imshow(im), colorbar
 colormap(cmap) 
 title(sprintf('tertiary, %d levels forced',n_contour))
 
-autoArrangeFigures
+autoArrangeFigures(1)

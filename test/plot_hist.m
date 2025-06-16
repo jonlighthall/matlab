@@ -72,7 +72,7 @@ mymap=[1 1 1;cmjet];
 colormap(mymap);
 colorbar
 
-autoArrangeFigures
+autoArrangeFigures(1)
 
 %% plot data from file
 if exist('hist.out','file')==2
