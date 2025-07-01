@@ -1,20 +1,19 @@
-close all
-clear variables
+%close all
+%clear variables
 
 load_constants
 
-
 % define metric units
 rm=1:100;
-TLm=r2tl(rm);
+TLm=r2tl_sph(rm);
 
 % define american units
 ryd=rm*m2yd;
-TLyd=r2tl(ryd);
+TLyd=r2tl_sph(ryd);
 
 % define referece tl
 r_ref=[1 10 100];
-TL_ref=r2tl(r_ref);
+TL_ref=r2tl_sph(r_ref);
 
 %% plot metric
 figure
@@ -59,8 +58,4 @@ axis ij
 hold on
 xlim([0 110])
 ylim([-1 45])
-end
-
-function [tl] = r2tl (range)
-tl=20*log10(range/1);
 end
