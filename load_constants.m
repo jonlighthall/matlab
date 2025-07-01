@@ -14,6 +14,8 @@ else
     lc_do_print=false;
 end
 
+fprintf('Loading conversions constants...')
+
 %% multiplicitive constants
 
 % The naming convention for the "variables" is as follows: <unit1>2<unit2> is the
@@ -51,16 +53,16 @@ nmi2km=nmi2m/1000; % nautical miles to km  = 1.852
 
 %-------------------------------------------------------
 % inverse relations (approximate)
-% feet
-ft2nmi=ft2m*m2nmi; % feet to nautical mile ~ 1.6458e-4
-ft2mi=ft2m*m2mi;   % feet to statute mile  ~ 1.8939e-4
-
 % meters
 m2ft =1/ft2m;  % meters to feet            ~ 3.2808
 m2yd =1/yd2m;  % meters to yards           ~ 1.0936
 m2kyd=1/kyd2m; % meters to kiloyards       ~ 0.0011
 m2mi =1/mi2m;  % meters to statute miles   ~ 6.2137e-4
 m2nmi=1/nmi2m; % meters to nautical miles  ~ 5.3996e-4
+
+% feet
+ft2nmi=ft2m*m2nmi; % feet to nautical mile ~ 1.6458e-4
+ft2mi=ft2m*m2mi;   % feet to statute mile  ~ 1.8939e-4
 
 % kilometers
 km2mi = 1/mi2km; % kilometers to statute miles ~ 0.6214
@@ -92,7 +94,9 @@ dB_yd2m=20*log10(yd2m); % decibels, yard reference to meter reference
 %
 % to convert from TL_ref_1m to TL_ref_1yd
 % TL_ref_1m + dB_m2yd = TL_ref_1yd (always 0.773 dB more TL)
-% TL_ref_1yd + dB_yd2m = TL_ref_1m (alwasy 0.773 dB less TL)
+% TL_ref_1yd + dB_yd2m = TL_ref_1m (always 0.773 dB less TL)
+
+fprintf('done.\n');
 
 %% printed output
 if(lc_do_print)
