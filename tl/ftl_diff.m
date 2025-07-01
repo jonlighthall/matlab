@@ -127,7 +127,7 @@ if print_stat
         fprintf('unweighted MAE = %f\n',mean(tl_diff) )
         fprintf('  weighted MAE = %f\n',tl_diff_1)
     end
+    fprintf('unweighted MAE = %f\n',mean(tl_diff) )
+    fprintf('  weighted MAE = %f\n',tl_diff_1)
 end
-fprintf('unweighted MAE = %f\n',mean(tl_diff) )
-fprintf('  weighted MAE = %f\n',tl_diff_1)
 end
