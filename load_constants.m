@@ -14,7 +14,7 @@ else
     lc_do_print=false;
 end
 
-fprintf('Loading conversions constants...')
+fprintf('Loading conversions constants... ')
 
 %% multiplicitive constants
 
